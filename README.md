@@ -17,8 +17,8 @@ For development purposes, follow the steps below:
 DEBUG = True
 
 # Make these unique, and don't share it with anybody.
-SECRET_KEY = "mg5i&vfp8q@f6&nhl0^=*rx1i%ho=^^sit$fj=p1go-&l!2$e@"
-NEVERCACHE_KEY = "7ip3y%-871s=66oy=&n1wu=(b$&tawd-9p+=^59as2gxxxs!+x"
+SECRET_KEY = "<my very long random string here>"
+NEVERCACHE_KEY = "<my different very long random string here>"
 
 DATABASES = {
     "default": {
