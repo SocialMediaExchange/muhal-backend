@@ -40,6 +40,7 @@ DATABASES = {
 # Allowed development hosts
 ALLOWED_HOSTS = ["localhost", "127.0.0.1", "::1"]
 ```
+3. Add your languages to the `LANGUAGES` setting in `settings.py`
 3. Run `python manage.py create.db` to create a database, superuser, and some (optional) stock content.
 4. Run `python manage.py runserver` to launch the local server. 
 

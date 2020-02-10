@@ -97,6 +97,7 @@ urlpatterns += [
 
     # ("^%s/" % settings.SITE_PREFIX, include("mezzanine.urls"))
 
+    url(r'^api-auth/', include('rest_framework.urls')),
 ]
 
 # Adds ``STATIC_URL`` to the context of error pages, so that error

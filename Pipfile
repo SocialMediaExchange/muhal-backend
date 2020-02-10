@@ -7,6 +7,8 @@ verify_ssl = true
 
 [packages]
 mezzanine = "*"
+django-rest-framework = "*"
+django-modeltranslation = "*"
 
 [requires]
 python_version = "3.6"

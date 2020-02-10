@@ -83,7 +83,7 @@ from django.utils.translation import ugettext_lazy as _
 
 # If True, the django-modeltranslation will be added to the
 # INSTALLED_APPS setting.
-USE_MODELTRANSLATION = False
+USE_MODELTRANSLATION = True
 
 
 ########################
@@ -113,6 +113,7 @@ LANGUAGE_CODE = "en"
 # Supported languages
 LANGUAGES = (
     ('en', _('English')),
+    ('ar', _('Arabic')),
 )
 
 # A boolean that turns on/off debug mode. When set to ``True``, stack traces
@@ -127,7 +128,7 @@ SITE_ID = 1
 
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
-USE_I18N = False
+USE_I18N = True
 
 AUTHENTICATION_BACKENDS = ("mezzanine.core.auth_backends.MezzanineBackend",)
 
@@ -252,6 +253,10 @@ INSTALLED_APPS = (
     "mezzanine.galleries",
     "mezzanine.twitter",
     # "mezzanine.accounts",
+    'rest_framework',
+
+    # muhal apps
+    'cases',
 )
 
 # List of middleware classes to use. Order is important; in the request phase,
@@ -300,6 +305,18 @@ OPTIONAL_APPS = (
     PACKAGE_NAME_FILEBROWSER,
     PACKAGE_NAME_GRAPPELLI,
 )
+
+#########################
+# django-rest-framework #
+#########################
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
 
 ##################
 # LOCAL SETTINGS #
