@@ -58,6 +58,14 @@ class Plaintiff(models.Model):
     def __str__(self):
         return '{} {}'.format(self.first_name, self.last_name)
 
+
+class LawArticle(models.Model):
+    number = models.CharField(max_length=100, verbose_name=_('number'))
+    name = models.CharField(max_length=100, verbose_name=_('name'))
+
+    def __str__(self):
+        return self.number
+
 class Case(Displayable):
     name = models.CharField(max_length=100, blank=True, null=True, verbose_name=_('name'))
     summary = models.TextField(blank=True, verbose_name=_('summary'))
@@ -66,6 +74,11 @@ class Case(Displayable):
     date = models.DateTimeField(blank=True, null=True, verbose_name=_('date'))
     platform = models.CharField(max_length=6, blank=True, null=True, choices=PLATFORM_CHOICES, verbose_name=_('platform'))
     current_status = models.CharField(max_length=6, blank=True, null=True, choices=STATUS_CHOICES, verbose_name=_('status'))
+
+    # expression details 
+    charge = models.TextField(blank=True, null=True, verbose_name=_('charge'))
+    charged_using = models.ManyToManyField(LawArticle, verbose_name=_('charged using law article') )
+    bail = models.CharField(max_length=15, blank=True, null=True, verbose_name=_('bail amount'))
 
     def __str__(self):
         return self.title

@@ -1,5 +1,5 @@
 from modeltranslation.translator import translator, TranslationOptions
-from .models import Case, Plaintiff, Defendant
+from .models import Case, Plaintiff, Defendant, LawArticle
 from mezzanine.core.translation import TranslatedDisplayable
 
 class CaseTranslationOptions(TranslatedDisplayable):
@@ -11,6 +11,10 @@ class DefendantTranslationOptions(TranslationOptions):
 class PlaintiffTranslationOptions(TranslationOptions):
     fields = ('first_name', 'last_name', )
 
+class LawArticleTranslationOptions(TranslationOptions):
+    fields = ('name', )
+
 translator.register(Defendant, DefendantTranslationOptions)
 translator.register(Plaintiff, PlaintiffTranslationOptions)
 translator.register(Case, CaseTranslationOptions)
+translator.register(LawArticle, LawArticleTranslationOptions)
