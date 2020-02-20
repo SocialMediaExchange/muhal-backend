@@ -2,6 +2,12 @@ from django.db import models
 from mezzanine.core.models import Displayable
 from django.utils.translation import gettext_lazy as _
 
+COUNTRY_CHOICES = [
+    ('lb', _('Lebanon')),
+    ('jo', _('Jordan')),
+    ('other', _('Other')),
+]
+
 GENDER_CHOICES = [
     ('male', _('Male')),
     ('female', _('Female')),
@@ -40,6 +46,42 @@ STATUS_CHOICES = [
     ('na', _('Not applicable')),
 ]
 
+SENTENCED_CHOICES = [
+    ('yes', _('Yes')),
+    ('no', _('No')),
+    ('postponed', _('Postponed')),
+    ('inprocess', _('In the process')),
+    ('n/a', _('Not applicable')),
+]
+
+YES_NO_NA_CHOICES = [
+    ('yes', _('Yes')),
+    ('no', _('No')),
+    ('n/a', _('Not applicable')),
+]
+
+PLEDGE_SIGNING_CHOICES = [
+    ('yes', _('Yes')),
+    ('no', _('No')),
+    ('refuse', _('Refused')),
+    ('n/a', _('Not applicable')),
+]
+
+DELETE_CONTENT_CHOICES = [
+    ('forced', _('Forced')),
+    ('required', _('Required')),
+    ('No', _('No')),
+    ('n/a', _('Not applicable')),
+]
+
+CONTACTED_VIA_CHOICES = [
+    ('phone', _('Phone call')),
+    ('inperson', _('In person')),
+    ('fax', _('Fax')),
+    ('No', _('No')),
+]
+
+
 class Defendant(models.Model):
     first_name = models.CharField(max_length=40, verbose_name=_('first name'))
     last_name = models.CharField(max_length=40, verbose_name=_('last name'))
@@ -67,7 +109,10 @@ class LawArticle(models.Model):
         return self.number
 
 class Case(Displayable):
-    name = models.CharField(max_length=100, blank=True, null=True, verbose_name=_('name'))
+    country = models.CharField(max_length=5, choices=COUNTRY_CHOICES, verbose_name=_('country'))
+
+    # basic info
+    # name = models.CharField(max_length=100, blank=True, null=True, verbose_name=_('web title'))
     summary = models.TextField(blank=True, verbose_name=_('summary'))
     defendants = models.ManyToManyField(Defendant, blank=True, verbose_name=_('defendants'))
     plaintiffs = models.ManyToManyField(Plaintiff, blank=True, verbose_name=_('plaintiffs'))
@@ -77,11 +122,21 @@ class Case(Displayable):
 
     # expression details 
     charge = models.TextField(blank=True, null=True, verbose_name=_('charge'))
-    charged_using = models.ManyToManyField(LawArticle, verbose_name=_('charged using law article') )
+    charged_using = models.ManyToManyField(LawArticle, blank=True, verbose_name=_('charged using law article') )
     bail = models.CharField(max_length=15, blank=True, null=True, verbose_name=_('bail amount'))
 
+    # interrogation and detention 
+    sentenced = models.CharField(max_length=6, blank=True, null=True, choices=SENTENCED_CHOICES, verbose_name=_('sentenced?'))
+    sentence = models.TextField(blank=True, null=True, verbose_name=_('sentence'))
+    in_absentia = models.CharField(max_length=6, blank=True, null=True, choices=YES_NO_NA_CHOICES, verbose_name=_('in absentia?'))
+    detained = models.CharField(max_length=6, blank=True, null=True, choices=YES_NO_NA_CHOICES, verbose_name=_('detained?'))
+    detained_for = models.IntegerField(blank=True, null=True, verbose_name=_('detained for number of days'))
+    pledge_signing = models.CharField(max_length=6, blank=True, null=True, choices=PLEDGE_SIGNING_CHOICES, verbose_name=_('Requested to sign pledge?'))
+    content_deletion = models.CharField(max_length=10, blank=True, null=True, choices=DELETE_CONTENT_CHOICES, verbose_name=_('Requested to delete content?'))
+    contacted_via = models.CharField(max_length=10, blank=True, null=True, choices=CONTACTED_VIA_CHOICES, verbose_name=_('Contacted via'))
+
     def __str__(self):
-        return self.title
+        return self.summary[:15]
 
     def get_absolute_url(self):
         return self.id 

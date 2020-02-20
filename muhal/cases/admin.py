@@ -19,14 +19,23 @@ class LawArticleAdmin(BaseTranslationModelAdmin):
 
 class CaseAdmin(DisplayableAdmin):
     fieldsets = (
+        (_("Country"), {
+            "fields": ["country", ],
+        }),
         (_("Case details"), {
-            "fields": ["name", "date", "summary", "defendants", "plaintiffs", "platform", "current_status", ],
+            "fields": ["date", "summary", "defendants", "plaintiffs", "platform", "current_status", ],
         }),
         (_("Expression of opinion"), {
             "fields": ["charge", "charged_using", "bail", ],
+            "classes": ("collapse-closed",),
+        }),
+        (_("Investigation and detention"), {
+            "fields": ["sentence", "sentenced", "in_absentia", "detained", "detained_for", "pledge_signing", "content_deletion", "contacted_via", ],
+            "classes": ("collapse-closed",)
         }),
         (_("Publishing"), {
             "fields": ["status", ("publish_date", "expiry_date")],
+            "classes": ("collapse-closed",)
         }),
         (_("Meta data"), {
             "fields": ["_meta_title", "slug",
@@ -36,8 +45,9 @@ class CaseAdmin(DisplayableAdmin):
         }),
     )
 
-    list_display = ['title', 'status', 'date', ]
-    search_fields = ['name', 'summary']
+    list_display = ['title', 'platform', 'current_status', 'date', 'status',]
+    search_fields = ['summary', ]
+    list_filter = ['status', 'current_status', 'defendants', 'plaintiffs', ]
     filter_horizontal = ('plaintiffs', 'defendants', 'charged_using', )
 
 admin.site.register(Plaintiff, PlaintiffAdmin)

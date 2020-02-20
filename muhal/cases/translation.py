@@ -3,7 +3,7 @@ from .models import Case, Plaintiff, Defendant, LawArticle
 from mezzanine.core.translation import TranslatedDisplayable
 
 class CaseTranslationOptions(TranslatedDisplayable):
-    fields = ('name', 'summary', )
+    fields = ('summary', )
 
 class DefendantTranslationOptions(TranslationOptions):
     fields = ('first_name', 'last_name', 'profession')
