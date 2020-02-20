@@ -81,6 +81,42 @@ CONTACTED_VIA_CHOICES = [
     ('No', _('No')),
 ]
 
+LEGAL_ENTITY_CHOICES = [
+    ('army intel', _('Army Intelligence Branch')),
+]
+
+KAZA_CHOICES = [
+    ('Akkar', _('Akkar')),
+    ('Minieh-Danieh', _('Minieh-Danieh')),
+    ('Baalbeck', _('Baalbeck')),
+    ('Hermel', _('Hermel')),
+    ('Beirut', _('Beirut')),
+    ('Rachiaya', _('Rachiaya')),
+    ('West Bekaa', _('West Bekaa')),
+    ('Zahleh', _('Zahleh')),
+    ('Aley', _('Aley')),
+    ('Baabda', _('Baabda')),
+    ('Batroun', _('Batroun')),
+    ('Chouf', _('Chouf')),
+    ('El Metn', _('El Metn')),
+    ('Jezzine', _('Jezzine')),
+    ('Jubail', _('Jubail')),
+    ('Kasrouane', _('Kasrouane')),
+    ('Bint Jbayl', _('Bint Jbayl')),
+    ('Hasbaya', _('Hasbaya')),
+    ('Marjaayoun', _('Marjaayoun')),
+    ('Nabatiyeh', _('Nabatiyeh')),
+    ('Batroun', _('Batroun')),
+    ('Bcharre', _('Bcharre')),
+    ('Koura', _('Koura')),
+    ('Minieh-Danieh', _('Minieh-Danieh')),
+    ('Tripoli', _('Tripoli')),
+    ('Zgharta', _('Zgharta')),
+    ('Jezzine', _('Jezzine')),
+    ('Nabatiyeh', _('Nabatiyeh')),
+    ('Saida', _('Saida')),
+    ('Sour', _('Sour')),
+]
 
 class Defendant(models.Model):
     first_name = models.CharField(max_length=40, verbose_name=_('first name'))
@@ -100,6 +136,14 @@ class Plaintiff(models.Model):
     def __str__(self):
         return '{} {}'.format(self.first_name, self.last_name)
 
+class Judge(models.Model):
+    first_name = models.CharField(max_length=40, verbose_name=_('first name'))
+    last_name = models.CharField(max_length=40, verbose_name=_('last name'))
+    legal_entity = models.CharField(max_length=6, choices=LEGAL_ENTITY_CHOICES, verbose_name=_('legal entity'))
+    kaza = models.CharField(max_length=20, choices=KAZA_CHOICES, blank=True, null=True, verbose_name=_('kaza'))
+
+    def __str__(self):
+        return '{} {}'.format(self.first_name, self.last_name)
 
 class LawArticle(models.Model):
     number = models.CharField(max_length=100, verbose_name=_('number'))
@@ -134,6 +178,29 @@ class Case(Displayable):
     pledge_signing = models.CharField(max_length=6, blank=True, null=True, choices=PLEDGE_SIGNING_CHOICES, verbose_name=_('Requested to sign pledge?'))
     content_deletion = models.CharField(max_length=10, blank=True, null=True, choices=DELETE_CONTENT_CHOICES, verbose_name=_('Requested to delete content?'))
     contacted_via = models.CharField(max_length=10, blank=True, null=True, choices=CONTACTED_VIA_CHOICES, verbose_name=_('Contacted via'))
+
+    # interrogation and detention 
+    judge = models.ForeignKey(Judge, blank=True, null=True, verbose_name=_('judge and court'))
+    sentenced = models.CharField(max_length=6, blank=True, null=True, choices=SENTENCED_CHOICES, verbose_name=_('sentenced?'))
+    sentence = models.TextField(blank=True, null=True, verbose_name=_('sentence'))
+    in_absentia = models.CharField(max_length=6, blank=True, null=True, choices=YES_NO_NA_CHOICES, verbose_name=_('in absentia?'))
+    detained = models.CharField(max_length=6, blank=True, null=True, choices=YES_NO_NA_CHOICES, verbose_name=_('detained?'))
+    detained_for = models.IntegerField(blank=True, null=True, verbose_name=_('detained for number of days'))
+    pledge_signing = models.CharField(max_length=6, blank=True, null=True, choices=PLEDGE_SIGNING_CHOICES, verbose_name=_('Requested to sign pledge?'))
+    content_deletion = models.CharField(max_length=10, blank=True, null=True, choices=DELETE_CONTENT_CHOICES, verbose_name=_('Requested to delete content?'))
+    contacted_via = models.CharField(max_length=10, blank=True, null=True, choices=CONTACTED_VIA_CHOICES, verbose_name=_('Contacted via'))
+
+    # timeline
+    date_of_post = models.DateField(blank=True, null=True, verbose_name=_('date of publication of expression'))
+    date_of_contact = models.DateField(blank=True, null=True, verbose_name=_('date of contact by cybercrime bureau'))
+    date_of_investigation = models.DateField(blank=True, null=True, verbose_name=_('date of investigation'))
+    date_of_detention = models.DateField(blank=True, null=True, verbose_name=_('date of detention'))
+    duration_of_detention = models.PositiveSmallIntegerField(blank=True, null=True, verbose_name=_('duration of detention (in days)'))
+    date_of_hearing = models.DateField(blank=True, null=True, verbose_name=_('date of hearing'))
+    date_of_hearing_2 = models.DateField(blank=True, null=True, verbose_name=_('date of second hearing'))
+    date_of_release = models.DateField(blank=True, null=True, verbose_name=_('date of release'))
+    date_of_ruling = models.DateField(blank=True, null=True, verbose_name=_('date of ruling'))
+
 
     def __str__(self):
         return self.summary[:15]
