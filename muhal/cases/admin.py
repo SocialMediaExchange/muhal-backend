@@ -4,6 +4,7 @@ from mezzanine.pages.admin import DisplayableAdmin
 from mezzanine.core.admin import BaseTranslationModelAdmin
 
 from .models import Case, Defendant, Plaintiff, LawArticle, Judge
+from attachments.admin import AttachmentInline
 
 class PlaintiffAdmin(BaseTranslationModelAdmin):
     list_display = ['first_name', 'last_name', ]
@@ -57,6 +58,7 @@ class CaseAdmin(DisplayableAdmin):
     search_fields = ['summary', ]
     list_filter = ['status', 'current_status', 'defendants', 'plaintiffs', ]
     filter_horizontal = ('plaintiffs', 'defendants', 'charged_using', )
+    inlines = (AttachmentInline, )
 
 admin.site.register(Plaintiff, PlaintiffAdmin)
 admin.site.register(Defendant, DefendantAdmin)

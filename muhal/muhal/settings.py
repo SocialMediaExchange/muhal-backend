@@ -257,6 +257,7 @@ INSTALLED_APPS = (
 
     # muhal apps
     'cases',
+    'attachments',
 )
 
 # List of middleware classes to use. Order is important; in the request phase,
