@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-09 13:37+0000\n"
-"PO-Revision-Date: 2020-03-09 15:38+0200\n"
+"POT-Creation-Date: 2020-03-09 14:40+0000\n"
+"PO-Revision-Date: 2020-03-09 17:01+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ar\n"
@@ -32,6 +32,7 @@ msgid "file"
 msgstr "ملف"
 
 #: attachments/models.py:9
+#, fuzzy
 msgid "public"
 msgstr "عام"
 
@@ -483,15 +484,15 @@ msgstr "تاريخ الحكم"
 
 #: cases/models.py:228
 msgid "case"
-msgstr "القضيّة"
+msgstr "قضيّة"
 
 #: muhal/settings.py:115
-msgid "English"
-msgstr "إنگليزي"
-
-#: muhal/settings.py:116
 msgid "Arabic"
 msgstr "عربي"
+
+#: muhal/settings.py:116
+msgid "English"
+msgstr "إنگليزي"
 
 #~ msgid "Forced"
 #~ msgstr "أُجبر/ت على التوقيع"
