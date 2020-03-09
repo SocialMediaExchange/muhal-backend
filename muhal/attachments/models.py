@@ -14,3 +14,7 @@ class Attachment(models.Model):
     
     def __str__(self):
         return self.label
+
+    class Meta:
+        verbose_name = _('attachment')
+        verbose_name_plural = _('attachments')

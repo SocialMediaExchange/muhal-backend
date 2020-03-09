@@ -319,6 +319,15 @@ REST_FRAMEWORK = {
     ]
 }
 
+#########################
+# django-rest-framework #
+#########################
+
+LOCALE_PATHS = (
+    os.path.join(PROJECT_ROOT, 'locale'),
+)
+
+
 ##################
 # LOCAL SETTINGS #
 ##################

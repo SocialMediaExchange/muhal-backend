@@ -3,8 +3,8 @@ from mezzanine.core.models import Displayable
 from django.utils.translation import gettext_lazy as _
 
 COUNTRY_CHOICES = [
-    ('lb', _('Lebanon')),
-    ('jo', _('Jordan')),
+    ('lebanon', _('Lebanon')),
+    ('jordan', _('Jordan')),
     ('other', _('Other')),
 ]
 
@@ -15,9 +15,9 @@ GENDER_CHOICES = [
 ]
 
 CITIZENSHIP_CHOICES = [
-    ('leb', _('Lebanese')),
-    ('syr', _('Syrian')),
-    ('non', _('Stateless')),
+    ('lebanon', _('Lebanese')),
+    ('syria', _('Syrian')),
+    ('stateless', _('Stateless')),
     ('other', _('Other')),
 ]
 
@@ -63,13 +63,13 @@ YES_NO_NA_CHOICES = [
 PLEDGE_SIGNING_CHOICES = [
     ('yes', _('Yes')),
     ('no', _('No')),
-    ('refuse', _('Refused')),
+    ('refuse', _('Refused signing')),
     ('n/a', _('Not applicable')),
 ]
 
 DELETE_CONTENT_CHOICES = [
-    ('forced', _('Forced')),
-    ('required', _('Required')),
+    ('forced', _('Forced to delete')),
+    ('required', _('Required to delete')),
     ('No', _('No')),
     ('n/a', _('Not applicable')),
 ]
@@ -123,11 +123,15 @@ class Defendant(models.Model):
     last_name = models.CharField(max_length=40, verbose_name=_('last name'))
     gender = models.CharField(max_length=6, choices=GENDER_CHOICES, verbose_name=_('gender'))
     age_range = models.CharField(max_length=6, choices=AGE_RANGE_CHOICES, verbose_name=_('age range'))
-    citizenship = models.CharField(max_length=6, choices=CITIZENSHIP_CHOICES, verbose_name=_('citizenship'))
+    citizenship = models.CharField(max_length=10, choices=CITIZENSHIP_CHOICES, verbose_name=_('citizenship'))
     profession = models.CharField(max_length=100, blank=True, null=True, verbose_name=_('profession'))
 
     def __str__(self):
         return '{} {}'.format(self.first_name, self.last_name)
+
+    class Meta:
+        verbose_name = _('defendant')
+        verbose_name_plural = _('defendants')
 
 class Plaintiff(models.Model):
     first_name = models.CharField(max_length=40, verbose_name=_('first name'))
@@ -135,6 +139,10 @@ class Plaintiff(models.Model):
 
     def __str__(self):
         return '{} {}'.format(self.first_name, self.last_name)
+
+    class Meta:
+        verbose_name = _('plaintiff')
+        verbose_name_plural = _('plaintiff')
 
 class Judge(models.Model):
     first_name = models.CharField(max_length=40, verbose_name=_('first name'))
@@ -145,15 +153,23 @@ class Judge(models.Model):
     def __str__(self):
         return '{} {}'.format(self.first_name, self.last_name)
 
+    class Meta:
+        verbose_name = _('judge')
+        verbose_name_plural = _('judge')
+
 class LawArticle(models.Model):
     number = models.CharField(max_length=100, verbose_name=_('number'))
     name = models.CharField(max_length=100, verbose_name=_('name'))
+
+    class Meta:
+        verbose_name = _('law article')
+        verbose_name_plural = _('law articles')
 
     def __str__(self):
         return self.number
 
 class Case(Displayable):
-    country = models.CharField(max_length=5, choices=COUNTRY_CHOICES, verbose_name=_('country'))
+    country = models.CharField(max_length=10, choices=COUNTRY_CHOICES, verbose_name=_('country'))
 
     # basic info
     # name = models.CharField(max_length=100, blank=True, null=True, verbose_name=_('web title'))
@@ -207,3 +223,7 @@ class Case(Displayable):
 
     def get_absolute_url(self):
         return self.id 
+
+    class Meta:
+        verbose_name = _('case')
+        verbose_name_plural = _('cases')
