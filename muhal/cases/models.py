@@ -118,6 +118,14 @@ KAZA_CHOICES = [
     ('Sour', _('Sour')),
 ]
 
+LAW_CHOICES = [
+    ('publication', _('Publications law')),
+    ('penal', _('Penal code')),
+    ('electronic', _('Electronic affairs')),
+    ('military', _('Military law')),
+    ('other', _('Other')),
+]
+
 class Defendant(models.Model):
     first_name = models.CharField(max_length=40, verbose_name=_('first name'))
     last_name = models.CharField(max_length=40, verbose_name=_('last name'))
@@ -142,7 +150,7 @@ class Plaintiff(models.Model):
 
     class Meta:
         verbose_name = _('plaintiff')
-        verbose_name_plural = _('plaintiff')
+        verbose_name_plural = _('plaintiffs')
 
 class Judge(models.Model):
     first_name = models.CharField(max_length=40, verbose_name=_('first name'))
@@ -158,40 +166,48 @@ class Judge(models.Model):
         verbose_name_plural = _('judge')
 
 class LawArticle(models.Model):
+    law = models.CharField(max_length=20, null=True, choices=LAW_CHOICES, verbose_name=_('law'))
     number = models.CharField(max_length=100, verbose_name=_('number'))
     name = models.CharField(max_length=100, verbose_name=_('name'))
+    url = models.URLField(blank=True, null=True, verbose_name=_('URL'), help_text=_('URL to the law text on the Lebanese University Centre for Law'))
 
     class Meta:
         verbose_name = _('law article')
         verbose_name_plural = _('law articles')
 
     def __str__(self):
-        return self.number
+        return _('{} article {}').format(self.law, self.number)
 
 class Case(Displayable):
-    country = models.CharField(max_length=10, choices=COUNTRY_CHOICES, verbose_name=_('country'))
+    # country = models.CharField(max_length=10, choices=COUNTRY_CHOICES, verbose_name=_('country'))
 
     # basic info
     # name = models.CharField(max_length=100, blank=True, null=True, verbose_name=_('web title'))
     summary = models.TextField(blank=True, verbose_name=_('summary'))
     defendants = models.ManyToManyField(Defendant, blank=True, verbose_name=_('defendants'))
     plaintiffs = models.ManyToManyField(Plaintiff, blank=True, verbose_name=_('plaintiffs'))
-    date = models.DateTimeField(blank=True, null=True, verbose_name=_('date'))
+    # date = models.DateField(blank=True, null=True, verbose_name=_('publication date'))
     platform = models.CharField(max_length=6, blank=True, null=True, choices=PLATFORM_CHOICES, verbose_name=_('platform'))
     current_status = models.CharField(max_length=6, blank=True, null=True, choices=STATUS_CHOICES, verbose_name=_('status'))
 
+    # complaint details
+    station_name = models.CharField(max_length=50, blank=True, null=True, verbose_name=_('Police station name'))
+    detained = models.CharField(max_length=6, blank=True, null=True, choices=YES_NO_NA_CHOICES, verbose_name=_('detained?'))
+    detained_for = models.IntegerField(blank=True, null=True, verbose_name=_('detained for number of days'))
+    pledge_signing = models.CharField(max_length=6, blank=True, null=True, choices=PLEDGE_SIGNING_CHOICES, verbose_name=_('Requested to sign pledge?'))
+    content_deletion = models.CharField(max_length=10, blank=True, null=True, choices=DELETE_CONTENT_CHOICES, verbose_name=_('Requested to delete content?'))
+    reconciliation = models.NullBooleanField(verbose_name=_('reconciliation'))
+
+    # Case details
     # expression details 
     charge = models.TextField(blank=True, null=True, verbose_name=_('charge'))
     charged_using = models.ManyToManyField(LawArticle, blank=True, verbose_name=_('charged using law article') )
-    bail = models.CharField(max_length=15, blank=True, null=True, verbose_name=_('bail amount'))
+    bail = models.IntegerField(blank=True, null=True, verbose_name=_('bail amount'), help_text=_('The amount in local currency'))
 
     # interrogation and detention 
     sentenced = models.CharField(max_length=6, blank=True, null=True, choices=SENTENCED_CHOICES, verbose_name=_('sentenced?'))
     sentence = models.TextField(blank=True, null=True, verbose_name=_('sentence'))
     in_absentia = models.CharField(max_length=6, blank=True, null=True, choices=YES_NO_NA_CHOICES, verbose_name=_('in absentia?'))
-    detained = models.CharField(max_length=6, blank=True, null=True, choices=YES_NO_NA_CHOICES, verbose_name=_('detained?'))
-    detained_for = models.IntegerField(blank=True, null=True, verbose_name=_('detained for number of days'))
-    pledge_signing = models.CharField(max_length=6, blank=True, null=True, choices=PLEDGE_SIGNING_CHOICES, verbose_name=_('Requested to sign pledge?'))
     content_deletion = models.CharField(max_length=10, blank=True, null=True, choices=DELETE_CONTENT_CHOICES, verbose_name=_('Requested to delete content?'))
     contacted_via = models.CharField(max_length=10, blank=True, null=True, choices=CONTACTED_VIA_CHOICES, verbose_name=_('Contacted via'))
 
@@ -200,14 +216,10 @@ class Case(Displayable):
     sentenced = models.CharField(max_length=6, blank=True, null=True, choices=SENTENCED_CHOICES, verbose_name=_('sentenced?'))
     sentence = models.TextField(blank=True, null=True, verbose_name=_('sentence'))
     in_absentia = models.CharField(max_length=6, blank=True, null=True, choices=YES_NO_NA_CHOICES, verbose_name=_('in absentia?'))
-    detained = models.CharField(max_length=6, blank=True, null=True, choices=YES_NO_NA_CHOICES, verbose_name=_('detained?'))
-    detained_for = models.IntegerField(blank=True, null=True, verbose_name=_('detained for number of days'))
-    pledge_signing = models.CharField(max_length=6, blank=True, null=True, choices=PLEDGE_SIGNING_CHOICES, verbose_name=_('Requested to sign pledge?'))
-    content_deletion = models.CharField(max_length=10, blank=True, null=True, choices=DELETE_CONTENT_CHOICES, verbose_name=_('Requested to delete content?'))
     contacted_via = models.CharField(max_length=10, blank=True, null=True, choices=CONTACTED_VIA_CHOICES, verbose_name=_('Contacted via'))
 
     # timeline
-    date_of_post = models.DateField(blank=True, null=True, verbose_name=_('date of publication of expression'))
+    date_of_publication = models.DateField(blank=True, null=True, verbose_name=_('date of publication'))
     date_of_contact = models.DateField(blank=True, null=True, verbose_name=_('date of contact by cybercrime bureau'))
     date_of_investigation = models.DateField(blank=True, null=True, verbose_name=_('date of investigation'))
     date_of_detention = models.DateField(blank=True, null=True, verbose_name=_('date of detention'))
