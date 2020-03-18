@@ -178,6 +178,18 @@ class LawArticle(models.Model):
     def __str__(self):
         return _('{} article {}').format(self.law, self.number)
 
+class Reference(models.Model):
+    case = models.ForeignKey('Case')
+    title = models.CharField(max_length=100, verbose_name=_('title'))
+    url = models.URLField(verbose_name=_('URL'))
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = _('Reference')
+        verbose_name_plural = _('References')
+
 class Case(Displayable):
     # country = models.CharField(max_length=10, choices=COUNTRY_CHOICES, verbose_name=_('country'))
 

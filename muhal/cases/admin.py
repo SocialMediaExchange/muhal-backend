@@ -2,8 +2,9 @@ from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
 from mezzanine.pages.admin import DisplayableAdmin
 from mezzanine.core.admin import BaseTranslationModelAdmin
+from modeltranslation.admin import TranslationTabularInline
 
-from .models import Case, Defendant, Plaintiff, LawArticle, Judge
+from .models import Case, Defendant, Plaintiff, LawArticle, Judge, Reference
 from attachments.admin import AttachmentInline
 
 class PlaintiffAdmin(BaseTranslationModelAdmin):
@@ -20,6 +21,10 @@ class LawArticleAdmin(BaseTranslationModelAdmin):
 
 class JudgeAdmin(BaseTranslationModelAdmin):
     list_display = ['first_name', 'last_name', 'legal_entity', 'kaza', ]
+
+class ReferenceInline(TranslationTabularInline):
+    model = Reference
+    extra = 1
 
 class CaseAdmin(DisplayableAdmin):
     fieldsets = (
@@ -59,7 +64,7 @@ class CaseAdmin(DisplayableAdmin):
     search_fields = ['summary', ]
     list_filter = ['status', 'current_status', 'defendants', 'plaintiffs', ]
     filter_horizontal = ('plaintiffs', 'defendants', 'charged_using', )
-    inlines = (AttachmentInline, )
+    inlines = (ReferenceInline, AttachmentInline, )
     list_display_links = ['__str__', ]
 
 admin.site.register(Plaintiff, PlaintiffAdmin)
