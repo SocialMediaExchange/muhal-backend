@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-16 16:23+0000\n"
-"PO-Revision-Date: 2020-03-16 14:32+0200\n"
+"POT-Creation-Date: 2020-03-18 16:31+0000\n"
+"PO-Revision-Date: 2020-03-18 18:32+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ar\n"
@@ -39,31 +39,31 @@ msgstr "عام"
 msgid "attachment"
 msgstr "مُلحق"
 
-#: cases/admin.py:26
+#: cases/admin.py:31
 msgid "Basic information"
 msgstr "البيانات الأساسيّة"
 
-#: cases/admin.py:31
+#: cases/admin.py:36
 msgid "Complaint details"
 msgstr "تفاصيل الشكوى"
 
-#: cases/admin.py:36
+#: cases/admin.py:41
 msgid "Case details"
 msgstr "تفاصيل القضية"
 
-#: cases/admin.py:40
+#: cases/admin.py:45
 msgid "Timeline"
 msgstr "الجدول الزمني"
 
-#: cases/admin.py:46
+#: cases/admin.py:51
 msgid "Publishing"
 msgstr "النشر"
 
-#: cases/admin.py:50
+#: cases/admin.py:55
 msgid "Meta data"
 msgstr "البيانات الوصفيّة"
 
-#: cases/apps.py:7 cases/models.py:241
+#: cases/apps.py:7 cases/models.py:253
 msgid "cases"
 msgstr "قضايا"
 
@@ -354,7 +354,7 @@ msgstr "المهنة"
 msgid "defendant"
 msgstr "المدّعى عليهم/ن"
 
-#: cases/models.py:142 cases/models.py:187
+#: cases/models.py:142 cases/models.py:199
 msgid "defendants"
 msgstr "المدّعى عليهم/ن"
 
@@ -362,7 +362,7 @@ msgstr "المدّعى عليهم/ن"
 msgid "plaintiff"
 msgstr "المدّعي/ة"
 
-#: cases/models.py:153 cases/models.py:188
+#: cases/models.py:153 cases/models.py:200
 msgid "plaintiffs"
 msgstr "المدّعي"
 
@@ -390,7 +390,7 @@ msgstr "رقم"
 msgid "name"
 msgstr "الإسم"
 
-#: cases/models.py:172
+#: cases/models.py:172 cases/models.py:184
 msgid "URL"
 msgstr "الرابط"
 
@@ -412,115 +412,127 @@ msgstr "القوانين والمواد"
 msgid "{} article {}"
 msgstr "{} مادّة {}"
 
-#: cases/models.py:186
+#: cases/models.py:183
+msgid "title"
+msgstr "العنوان"
+
+#: cases/models.py:190
+msgid "Reference"
+msgstr "مرجع"
+
+#: cases/models.py:191
+msgid "References"
+msgstr "مراجع"
+
+#: cases/models.py:198
 msgid "summary"
 msgstr "الملخّص"
 
-#: cases/models.py:190
+#: cases/models.py:202
 msgid "platform"
 msgstr "المنصّة"
 
-#: cases/models.py:191
+#: cases/models.py:203
 msgid "status"
 msgstr "الوضع"
 
-#: cases/models.py:194
+#: cases/models.py:206
 msgid "Police station name"
 msgstr "إسم المخفر"
 
-#: cases/models.py:195
+#: cases/models.py:207
 msgid "detained?"
 msgstr "تم اعتقاله؟"
 
-#: cases/models.py:196
+#: cases/models.py:208
 msgid "detained for number of days"
 msgstr "عدد أيّام الاعتقال"
 
-#: cases/models.py:197
+#: cases/models.py:209
 msgid "Requested to sign pledge?"
 msgstr "طُلب توقيع تعهّد؟"
 
-#: cases/models.py:198 cases/models.py:211
+#: cases/models.py:210 cases/models.py:223
 msgid "Requested to delete content?"
 msgstr "طُلب حذف المحتوى؟"
 
-#: cases/models.py:199
+#: cases/models.py:211
 msgid "reconciliation"
 msgstr "مصالحة"
 
-#: cases/models.py:203
+#: cases/models.py:215
 msgid "charge"
 msgstr "التهمة"
 
-#: cases/models.py:204
+#: cases/models.py:216
 msgid "charged using law article"
 msgstr "القانون والمادّة المستعملة في التهمة"
 
-#: cases/models.py:205
+#: cases/models.py:217
 msgid "bail amount"
 msgstr "مبلغ الكفالة"
 
-#: cases/models.py:205
+#: cases/models.py:217
 msgid "The amount in local currency"
-msgstr ""
+msgstr "المبلغ بالعملة المحلّية"
 
-#: cases/models.py:208 cases/models.py:216
+#: cases/models.py:220 cases/models.py:228
 msgid "sentenced?"
 msgstr "هل تم الحكم؟"
 
-#: cases/models.py:209 cases/models.py:217
+#: cases/models.py:221 cases/models.py:229
 msgid "sentence"
 msgstr "الحكم"
 
-#: cases/models.py:210 cases/models.py:218
+#: cases/models.py:222 cases/models.py:230
 msgid "in absentia?"
 msgstr "حكم غيابي؟"
 
-#: cases/models.py:212 cases/models.py:219
+#: cases/models.py:224 cases/models.py:231
 msgid "Contacted via"
 msgstr "تم التواصل عبر"
 
-#: cases/models.py:215
+#: cases/models.py:227
 msgid "judge and court"
 msgstr "القاضي/ة والمحكمة"
 
-#: cases/models.py:222
+#: cases/models.py:234
 msgid "date of publication"
 msgstr "تاريخ النشر"
 
-#: cases/models.py:223
+#: cases/models.py:235
 msgid "date of contact by cybercrime bureau"
 msgstr "تاريخ التواصل من قبل المخفر"
 
-#: cases/models.py:224
+#: cases/models.py:236
 msgid "date of investigation"
 msgstr "تاريخ التحقيق"
 
-#: cases/models.py:225
+#: cases/models.py:237
 msgid "date of detention"
 msgstr "تاريخ الاجتجاز"
 
-#: cases/models.py:226
+#: cases/models.py:238
 msgid "duration of detention (in days)"
 msgstr "مدّة الاحتجاز"
 
-#: cases/models.py:227
+#: cases/models.py:239
 msgid "date of hearing"
 msgstr "تاريخ الجلسة"
 
-#: cases/models.py:228
+#: cases/models.py:240
 msgid "date of second hearing"
 msgstr "تاريخ الجلسة الثانية"
 
-#: cases/models.py:229
+#: cases/models.py:241
 msgid "date of release"
 msgstr "تاريخ إطلاق السراح"
 
-#: cases/models.py:230
+#: cases/models.py:242
 msgid "date of ruling"
 msgstr "تاريخ الحكم"
 
-#: cases/models.py:240
+#: cases/models.py:252
 msgid "case"
 msgstr "قضيّة"
 
