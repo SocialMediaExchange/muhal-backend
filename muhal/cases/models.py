@@ -141,6 +141,7 @@ class Defendant(models.Model):
         verbose_name = _('defendant')
         verbose_name_plural = _('defendants')
 
+
 class Plaintiff(models.Model):
     first_name = models.CharField(max_length=40, verbose_name=_('first name'))
     last_name = models.CharField(max_length=40, verbose_name=_('last name'))
@@ -151,6 +152,7 @@ class Plaintiff(models.Model):
     class Meta:
         verbose_name = _('plaintiff')
         verbose_name_plural = _('plaintiffs')
+
 
 class Judge(models.Model):
     first_name = models.CharField(max_length=40, verbose_name=_('first name'))
@@ -165,6 +167,7 @@ class Judge(models.Model):
         verbose_name = _('judge')
         verbose_name_plural = _('judge')
 
+
 class LawArticle(models.Model):
     law = models.CharField(max_length=20, null=True, choices=LAW_CHOICES, verbose_name=_('law'))
     number = models.CharField(max_length=100, verbose_name=_('number'))
@@ -178,6 +181,7 @@ class LawArticle(models.Model):
     def __str__(self):
         return _('{} article {}').format(self.law, self.number)
 
+
 class Reference(models.Model):
     case = models.ForeignKey('Case')
     title = models.CharField(max_length=100, verbose_name=_('title'))
@@ -189,6 +193,7 @@ class Reference(models.Model):
     class Meta:
         verbose_name = _('Reference')
         verbose_name_plural = _('References')
+
 
 class Case(Displayable):
     # country = models.CharField(max_length=10, choices=COUNTRY_CHOICES, verbose_name=_('country'))
@@ -240,7 +245,6 @@ class Case(Displayable):
     date_of_hearing_2 = models.DateField(blank=True, null=True, verbose_name=_('date of second hearing'))
     date_of_release = models.DateField(blank=True, null=True, verbose_name=_('date of release'))
     date_of_ruling = models.DateField(blank=True, null=True, verbose_name=_('date of ruling'))
-
 
     def __str__(self):
         return self.summary[:15]

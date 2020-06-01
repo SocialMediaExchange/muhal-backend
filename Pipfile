@@ -7,9 +7,13 @@ verify_ssl = true
 ipython = "*"
 
 [packages]
-mezzanine = "*"
+mezzanine = {git = "https://github.com/fermorltd/mezzanine.git",ref = "2.2-compat"}
 django-rest-framework = "*"
 django-modeltranslation = "*"
+django = "==2.2"
+django-cors-headers = "*"
+filebrowser-safe = {git = "https://github.com/fermorltd/filebrowser-safe.git",ref = "2.2-compat"}
+grappelli-safe = {git = "https://github.com/fermorltd/grappelli-safe.git",ref = "2.2-compat"}
 
 [requires]
-python_version = "3.6"
+python_version = "2.7"

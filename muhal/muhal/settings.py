@@ -254,6 +254,7 @@ INSTALLED_APPS = (
     "mezzanine.twitter",
     "mezzanine.accounts",
     'rest_framework',
+    'corsheaders',
 
     # muhal apps
     'cases',
@@ -264,6 +265,7 @@ INSTALLED_APPS = (
 # these middleware classes will be applied in the order given, and in the
 # response phase the middleware will be applied in reverse order.
 MIDDLEWARE = (
+    'corsheaders.middleware.CorsMiddleware',
     "mezzanine.core.middleware.UpdateCacheMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'cases.middleware.force_default_language_middleware.ForceDefaultLanguageMiddleware',
@@ -319,9 +321,9 @@ REST_FRAMEWORK = {
     ]
 }
 
-#########################
-# django-rest-framework #
-#########################
+CORS_ORIGIN_WHITELIST = (
+    'localhost:3000',
+)
 
 LOCALE_PATHS = (
     os.path.join(PROJECT_ROOT, 'locale'),

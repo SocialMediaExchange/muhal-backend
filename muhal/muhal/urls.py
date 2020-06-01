@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 from django.conf.urls import include, url
 from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
+from django.contrib.auth import views as v
 from django.views.i18n import set_language
 
 from mezzanine.core.views import direct_to_template
@@ -31,6 +32,8 @@ if settings.USE_MODELTRANSLATION:
 urlpatterns += [
     # Project API 
     url(r'^api/', include('cases.urls')), 
+
+    url(r"password-change/$", v.password_change, {"post_change_redirect":"account:password_change_done"}, name="password_reset"),
 
     # We don't want to presume how your homepage works, so here are a
     # few patterns you can use to set it up.
@@ -82,7 +85,7 @@ urlpatterns += [
     # ``mezzanine.urls``, go right ahead and take the parts you want
     # from it, and use them directly below instead of using
     # ``mezzanine.urls``.
-    url("^", include("mezzanine.urls")),
+    #url("^", include("mezzanine.urls")),
 
     # MOUNTING MEZZANINE UNDER A PREFIX
     # ---------------------------------
