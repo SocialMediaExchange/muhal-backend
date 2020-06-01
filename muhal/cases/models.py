@@ -1,5 +1,4 @@
 from django.db import models
-from mezzanine.core.models import Displayable
 from django.utils.translation import gettext_lazy as _
 
 COUNTRY_CHOICES = [
@@ -157,7 +156,7 @@ class Plaintiff(models.Model):
 class Judge(models.Model):
     first_name = models.CharField(max_length=40, verbose_name=_('first name'))
     last_name = models.CharField(max_length=40, verbose_name=_('last name'))
-    legal_entity = models.CharField(max_length=6, choices=LEGAL_ENTITY_CHOICES, verbose_name=_('legal entity'))
+    legal_entity = models.CharField(max_length=10, choices=LEGAL_ENTITY_CHOICES, verbose_name=_('legal entity'))
     kaza = models.CharField(max_length=20, choices=KAZA_CHOICES, blank=True, null=True, verbose_name=_('kaza'))
 
     def __str__(self):
@@ -183,7 +182,7 @@ class LawArticle(models.Model):
 
 
 class Reference(models.Model):
-    case = models.ForeignKey('Case')
+    case = models.ForeignKey('Case', on_delete=models.CASCADE)
     title = models.CharField(max_length=100, verbose_name=_('title'))
     url = models.URLField(verbose_name=_('URL'))
 
@@ -195,7 +194,7 @@ class Reference(models.Model):
         verbose_name_plural = _('References')
 
 
-class Case(Displayable):
+class Case(models.Model):
     # country = models.CharField(max_length=10, choices=COUNTRY_CHOICES, verbose_name=_('country'))
 
     # basic info
@@ -205,7 +204,7 @@ class Case(Displayable):
     plaintiffs = models.ManyToManyField(Plaintiff, blank=True, verbose_name=_('plaintiffs'))
     # date = models.DateField(blank=True, null=True, verbose_name=_('publication date'))
     platform = models.CharField(max_length=6, blank=True, null=True, choices=PLATFORM_CHOICES, verbose_name=_('platform'))
-    current_status = models.CharField(max_length=6, blank=True, null=True, choices=STATUS_CHOICES, verbose_name=_('status'))
+    current_status = models.CharField(max_length=8, blank=True, null=True, choices=STATUS_CHOICES, verbose_name=_('status'))
 
     # complaint details
     station_name = models.CharField(max_length=50, blank=True, null=True, verbose_name=_('Police station name'))
@@ -222,15 +221,15 @@ class Case(Displayable):
     bail = models.IntegerField(blank=True, null=True, verbose_name=_('bail amount'), help_text=_('The amount in local currency'))
 
     # interrogation and detention 
-    sentenced = models.CharField(max_length=6, blank=True, null=True, choices=SENTENCED_CHOICES, verbose_name=_('sentenced?'))
+    sentenced = models.CharField(max_length=9, blank=True, null=True, choices=SENTENCED_CHOICES, verbose_name=_('sentenced?'))
     sentence = models.TextField(blank=True, null=True, verbose_name=_('sentence'))
     in_absentia = models.CharField(max_length=6, blank=True, null=True, choices=YES_NO_NA_CHOICES, verbose_name=_('in absentia?'))
     content_deletion = models.CharField(max_length=10, blank=True, null=True, choices=DELETE_CONTENT_CHOICES, verbose_name=_('Requested to delete content?'))
     contacted_via = models.CharField(max_length=10, blank=True, null=True, choices=CONTACTED_VIA_CHOICES, verbose_name=_('Contacted via'))
 
     # interrogation and detention 
-    judge = models.ForeignKey(Judge, blank=True, null=True, verbose_name=_('judge and court'))
-    sentenced = models.CharField(max_length=6, blank=True, null=True, choices=SENTENCED_CHOICES, verbose_name=_('sentenced?'))
+    judge = models.ForeignKey(Judge, blank=True, null=True, on_delete=models.CASCADE, verbose_name=_('judge and court'))
+    # sentenced = models.CharField(max_length=6, blank=True, null=True, choices=SENTENCED_CHOICES, verbose_name=_('sentenced?'))
     sentence = models.TextField(blank=True, null=True, verbose_name=_('sentence'))
     in_absentia = models.CharField(max_length=6, blank=True, null=True, choices=YES_NO_NA_CHOICES, verbose_name=_('in absentia?'))
     contacted_via = models.CharField(max_length=10, blank=True, null=True, choices=CONTACTED_VIA_CHOICES, verbose_name=_('Contacted via'))
