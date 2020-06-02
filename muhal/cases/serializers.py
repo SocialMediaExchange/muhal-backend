@@ -42,7 +42,7 @@ class CaseSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Case
-        fields = ['summary', 'defendants', 'plaintiffs', 'platform', 'current_status',
+        fields = ['id', 'summary', 'defendants', 'plaintiffs', 'platform', 'current_status',
 
                   'charge', 'charged_using', 'bail',
 
