@@ -149,6 +149,7 @@ REST_FRAMEWORK = {
         'djangorestframework_camel_case.parser.CamelCaseJSONParser',
     ),
 }
+
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:3000',
 )
