@@ -5,34 +5,40 @@ from modeltranslation.admin import TranslationTabularInline, TranslationAdmin, T
 from .models import Case, Defendant, Plaintiff, LawArticle, Judge, Reference
 from attachments.admin import AttachmentInline
 
+
 class PlaintiffAdmin(TabbedTranslationAdmin):
     list_display = ['first_name', 'last_name', ]
     search_fields = ['first_name', 'last_name', ]
 
+
 class DefendantAdmin(TabbedTranslationAdmin):
-    list_display = ['first_name', 'last_name', 'gender', 'citizenship', 'profession', 'age_range', ]
+    list_display = ['first_name', 'last_name', 'gender',
+                    'citizenship', 'profession', 'age_range', ]
     search_fields = ['first_name', 'last_name', ]
+
 
 class LawArticleAdmin(TabbedTranslationAdmin):
     list_display = ['law', 'number', 'name', ]
     search_fields = ['number', 'name', ]
 
+
 class JudgeAdmin(TabbedTranslationAdmin):
     list_display = ['first_name', 'last_name', 'legal_entity', 'kaza', ]
+
 
 class ReferenceInline(TranslationTabularInline):
     model = Reference
     extra = 1
 
+
 class CaseAdmin(TabbedTranslationAdmin):
     fieldsets = (
-        (_('Basic information'), {
-            'fields': [#('country', ), 
-                       'summary', 'defendants', 'plaintiffs', 'platform', 'current_status', ],
+        (_('Required basic information'), {
+            'fields': ['summary', 'defendants', 'plaintiffs', 'platform', 'current_status', 'date_of_contact', 'date_of_publication'],
             'classes': ('collapse-open',),
         }),
         (_('Complaint details'), {
-            'fields': ['date_of_contact', 'date_of_investigation', 'station_name', 'detained', 'detained_for', 'pledge_signing', 
+            'fields': ['date_of_investigation', 'station_name', 'detained', 'detained_for', 'pledge_signing',
                        'content_deletion', 'reconciliation', 'contacted_via', ],
             'classes': ('collapse-closed',),
         }),
@@ -41,12 +47,12 @@ class CaseAdmin(TabbedTranslationAdmin):
             'classes': ('collapse-closed',)
         }),
         (_('Timeline'), {
-            'fields': ['date_of_publication', 'date_of_detention', #'date_of_contact', 'date_of_investigation'
-                       'duration_of_detention', 'date_of_hearing',  'date_of_hearing_2', 
+            'fields': ['date_of_detention',  # 'date_of_contact', 'date_of_investigation', 'date_of_publication'
+                       'duration_of_detention', 'date_of_hearing',  'date_of_hearing_2',
                        'date_of_release', 'date_of_ruling', ],
             'classes': ('collapse-closed',)
         }),
-        #TODO manually add metadata fields 
+        # TODO manually add metadata fields
         # (_('Publishing'), {
         #     'fields': ['status', ('publish_date', 'expiry_date')],
         #     'classes': ('collapse-closed',),
@@ -59,12 +65,15 @@ class CaseAdmin(TabbedTranslationAdmin):
         # }),
     )
 
-    list_display = ['__str__', 'platform', 'current_status', 'date_of_publication',] #  'status',
+    list_display = ['__str__', 'platform', 'current_status',
+                    'date_of_publication', 'date_of_contact', 'plaintiffs_list', 'defendants_list']  # 'status',
     search_fields = ['summary', ]
-    list_filter = ['current_status', 'defendants', 'plaintiffs', ] #TODO add status field
+    list_filter = ['current_status', 'defendants',
+                   'plaintiffs', ]  # TODO add status field
     filter_horizontal = ('plaintiffs', 'defendants', 'charged_using', )
     inlines = (ReferenceInline, AttachmentInline, )
     list_display_links = ['__str__', ]
+
 
 admin.site.register(Plaintiff, PlaintiffAdmin)
 admin.site.register(Defendant, DefendantAdmin)

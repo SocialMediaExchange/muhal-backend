@@ -1,17 +1,22 @@
 from modeltranslation.translator import translator, TranslationOptions
 from .models import Case, Plaintiff, Defendant, LawArticle, Judge, Reference
 
+
 class CaseTranslationOptions(TranslationOptions):
-    fields = ('summary', )
+    fields = ('summary', 'station_name', 'charge', 'sentence')
+
 
 class DefendantTranslationOptions(TranslationOptions):
     fields = ('first_name', 'last_name', 'profession')
 
+
 class PlaintiffTranslationOptions(TranslationOptions):
     fields = ('first_name', 'last_name', )
 
+
 class LawArticleTranslationOptions(TranslationOptions):
     fields = ('name', )
+
 
 class ReferenceTranslationOptions(TranslationOptions):
     fields = ('title', )

@@ -3,11 +3,13 @@ from django.urls import path
 
 from rest_framework import routers
 
-from .views import CaseViewSet
+from .views import CaseViewSet, PlaintiffViewSet, PlatformOptionsViewSet
 
 # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
 router.register(r'cases', CaseViewSet)
+router.register(r'plaintiffs', PlaintiffViewSet)
+router.register(r'platforms', PlatformOptionsViewSet, basename='platforms')
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.

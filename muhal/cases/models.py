@@ -198,7 +198,6 @@ class Case(models.Model):
     # country = models.CharField(max_length=10, choices=COUNTRY_CHOICES, verbose_name=_('country'))
 
     # basic info
-    # name = models.CharField(max_length=100, blank=True, null=True, verbose_name=_('web title'))
     summary = models.TextField(blank=True, verbose_name=_('summary'))
     defendants = models.ManyToManyField(Defendant, blank=True, verbose_name=_('defendants'))
     plaintiffs = models.ManyToManyField(Plaintiff, blank=True, verbose_name=_('plaintiffs'))
@@ -250,6 +249,12 @@ class Case(models.Model):
 
     def get_absolute_url(self):
         return self.id 
+
+    def plaintiffs_list(self):
+        return _(', ').join([str(plaintiff) for plaintiff in self.plaintiffs.all()])
+
+    def defendants_list(self):
+        return _(', ').join([str(defendant) for defendant in self.defendants.all()])
 
     class Meta:
         verbose_name = _('case')
