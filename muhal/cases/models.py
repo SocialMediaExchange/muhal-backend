@@ -41,8 +41,9 @@ PLATFORM_CHOICES = [
 STATUS_CHOICES = [
     ('open', _('Open')),
     ('closed', _('Closed')),
-    ('abstenia', _('In abstentia subject to appeal or objection')),
-    ('na', _('Not applicable')),
+    ('pending', _('Pending appeal or objection')),
+    # ('na', _('Not applicable')),
+    # TODO verify if NA is an option for status
 ]
 
 SENTENCED_CHOICES = [

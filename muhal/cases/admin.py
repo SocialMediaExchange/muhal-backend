@@ -69,7 +69,7 @@ class CaseAdmin(TabbedTranslationAdmin):
                     'date_of_publication', 'date_of_contact', 'plaintiffs_list', 'defendants_list']  # 'status',
     search_fields = ['summary', ]
     list_filter = ['current_status', 'defendants',
-                   'plaintiffs', ]  # TODO add status field
+                   'plaintiffs', 'platform']  # TODO add status field
     filter_horizontal = ('plaintiffs', 'defendants', 'charged_using', )
     inlines = (ReferenceInline, AttachmentInline, )
     list_display_links = ['__str__', ]

@@ -53,7 +53,7 @@ class CaseSerializer(serializers.ModelSerializer):
     plaintiffs = PlaintiffSerializer(required=False, many=True)
     judge = JudgeSerializer(required=False)
     charged_using = LawArticleSerializer(required=False, many=True)
-    platform = serializers.SerializerMethodField()
+    platform_display = serializers.SerializerMethodField()
     detained = serializers.SerializerMethodField()
     content_deletion = serializers.SerializerMethodField()
     pledge_signing = serializers.SerializerMethodField()
@@ -64,7 +64,7 @@ class CaseSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Case
-        fields = ['id', 'summary', 'defendants', 'plaintiffs', 'platform', 'current_status',
+        fields = ['id', 'summary', 'defendants', 'plaintiffs', 'platform', 'platform_display', 'current_status',
 
                   'charge', 'charged_using', 'bail',
 
@@ -76,7 +76,7 @@ class CaseSerializer(serializers.ModelSerializer):
                   'date_of_release', 'date_of_ruling',
                   ]
 
-    def get_platform(self, obj):
+    def get_platform_display(self, obj):
         return obj.get_platform_display()
 
     def get_detained(self, obj):
