@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from django.core.exceptions import ValidationError
 
 COUNTRY_CHOICES = [
     ('lebanon', _('Lebanon')),
@@ -245,9 +246,42 @@ class Case(models.Model):
     date_of_release = models.DateField(blank=True, null=True, verbose_name=_('date of release'))
     date_of_ruling = models.DateField(blank=True, null=True, verbose_name=_('date of ruling'))
 
+    # publishing 
+    published = models.BooleanField(default=False, verbose_name=_('Published?'))
+    created = models.DateTimeField(auto_now_add=True, verbose_name=_('Created'))
+    last_modified = models.DateTimeField(auto_now_add=True, verbose_name=_('Last modified'))
+
     def __str__(self):
         return self.summary[:15]
 
+    # def clean(self):
+    #     self.save()
+    #     if self.published:
+    #         errors = {}
+    #         if not self.summary:
+    #             errors['summary'] = _('The summary is missing')
+    #             # raise ValidationError(_('The summary is missing'))
+    #             # raise ValidationError({'summary': _('The summary is missing')})
+    #         if not self.plaintiffs.all().exists():
+    #             errors['plaintiffs'] = _('There needs to be at least one plaintiff')
+    #             # raise ValidationError({'plaintiffs': _('There needs to be at least one plaintiff')})
+    #         if not self.defendants.all().exists():
+    #             errors['defendants'] = _('There needs to be at least one defendant')
+    #             # raise ValidationError({'defendants': _('There needs to be at least one defendant')})
+    #         if not self.current_status:
+    #             errors['current_status'] = _('The current status is missing')
+    #             # raise ValidationError({'current_status': _('The current status is missing')})
+    #         if not self.platform:
+    #             errors['platform'] = _('The platform is missing')
+    #             # raise ValidationError({'platform': _('The platform is missing')})
+    #         if not self.date_of_publication:
+    #             errors['date_of_publication'] = _('The date of publication is missing')
+    #             # raise ValidationError({'date_of_publication': _('The date of publication is missing')})
+    #         if errors:
+    #             self.published = False
+    #             self.save()
+    #             raise ValidationError(errors)
+ 
     def get_absolute_url(self):
         return self.id 
 

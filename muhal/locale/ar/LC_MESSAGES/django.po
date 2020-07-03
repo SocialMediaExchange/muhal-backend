@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-29 16:36+0300\n"
-"PO-Revision-Date: 2020-06-29 16:40+0300\n"
+"POT-Creation-Date: 2020-06-29 18:11+0300\n"
+"PO-Revision-Date: 2020-06-29 18:13+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ar\n"
@@ -55,7 +55,11 @@ msgstr "تفاصيل القضية"
 msgid "Timeline"
 msgstr "الجدول الزمني"
 
-#: cases/apps.py:7 cases/models.py:262
+#: cases/admin.py:55
+msgid "Publishing"
+msgstr "بيانات النشر"
+
+#: cases/apps.py:7 cases/models.py:267
 msgid "cases"
 msgstr "قضايا"
 
@@ -523,11 +527,23 @@ msgstr "تاريخ إطلاق السراح"
 msgid "date of ruling"
 msgstr "تاريخ الحكم"
 
-#: cases/models.py:255 cases/models.py:258
+#: cases/models.py:249
+msgid "Published?"
+msgstr "تم النشر؟"
+
+#: cases/models.py:250
+msgid "Created"
+msgstr "أُنشئت"
+
+#: cases/models.py:251
+msgid "Last modified"
+msgstr "آخر تعديل"
+
+#: cases/models.py:260 cases/models.py:263
 msgid ", "
 msgstr "، "
 
-#: cases/models.py:261
+#: cases/models.py:266
 msgid "case"
 msgstr "قضيّة"
 
@@ -546,9 +562,6 @@ msgstr "عربي"
 #: muhal/settings.py:121
 msgid "English"
 msgstr "إنگليزي"
-
-#~ msgid "Publishing"
-#~ msgstr "النشر"
 
 #~ msgid "Meta data"
 #~ msgstr "البيانات الوصفيّة"

@@ -52,24 +52,17 @@ class CaseAdmin(TabbedTranslationAdmin):
                        'date_of_release', 'date_of_ruling', ],
             'classes': ('collapse-closed',)
         }),
-        # TODO manually add metadata fields
-        # (_('Publishing'), {
-        #     'fields': ['status', ('publish_date', 'expiry_date')],
-        #     'classes': ('collapse-closed',),
-        # }),
-        # (_('Meta data'), {
-        #     'fields': ['_meta_title', 'slug',
-        #                ('description', 'gen_description'),
-        #                 'keywords', 'in_sitemap'],
-        #     'classes': ('collapse-closed',),
-        # }),
+        (_('Publishing'), {
+            'fields': ['published', 'created', 'last_modified'],
+        }),
     )
+    readonly_fields = ('created', 'last_modified')
 
     list_display = ['__str__', 'platform', 'current_status',
-                    'date_of_publication', 'date_of_contact', 'plaintiffs_list', 'defendants_list']  # 'status',
+                    'date_of_publication', 'date_of_contact', 'plaintiffs_list', 'defendants_list', 'published']
     search_fields = ['summary', ]
     list_filter = ['current_status', 'defendants',
-                   'plaintiffs', 'platform']  # TODO add status field
+                   'plaintiffs', 'platform', 'published']
     filter_horizontal = ('plaintiffs', 'defendants', 'charged_using', )
     inlines = (ReferenceInline, AttachmentInline, )
     list_display_links = ['__str__', ]
