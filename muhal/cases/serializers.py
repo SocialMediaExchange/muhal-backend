@@ -51,7 +51,7 @@ class LawArticleSerializer(serializers.ModelSerializer):
 class CaseSerializer(serializers.ModelSerializer):
     defendants = DefendantSerializer(required=False, many=True)
     plaintiffs = PlaintiffSerializer(required=False, many=True)
-    judge = JudgeSerializer(required=False)
+    judges = JudgeSerializer(required=False, many=True)
     charged_using = LawArticleSerializer(required=False, many=True)
     platform_display = serializers.SerializerMethodField()
     detained = serializers.SerializerMethodField()
@@ -69,7 +69,7 @@ class CaseSerializer(serializers.ModelSerializer):
                   'charge', 'charged_using', 'bail',
 
                   'station_name', 'detained', 'detained_for',  'content_deletion', 'pledge_signing', 'reconciliation', 'contacted_via',
-                  'judge', 'sentenced', 'sentence', 'in_absentia',
+                  'judges', 'sentenced', 'sentence', 'in_absentia',
 
                   'date_of_publication', 'date_of_contact', 'date_of_investigation', 'date_of_detention',
                   'duration_of_detention', 'date_of_hearing', 'date_of_hearing_2',
