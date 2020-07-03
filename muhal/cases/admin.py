@@ -43,7 +43,7 @@ class CaseAdmin(TabbedTranslationAdmin):
             'classes': ('collapse-closed',),
         }),
         (_('Case details'), {
-            'fields': ['judge', 'charge', 'charged_using', 'bail', 'sentenced', 'sentence', 'in_absentia', ],
+            'fields': ['judges', 'charge', 'charged_using', 'bail', 'sentenced', 'sentence', 'in_absentia', ],
             'classes': ('collapse-closed',)
         }),
         (_('Timeline'), {
@@ -63,7 +63,7 @@ class CaseAdmin(TabbedTranslationAdmin):
     search_fields = ['summary', ]
     list_filter = ['current_status', 'defendants',
                    'plaintiffs', 'platform', 'published']
-    filter_horizontal = ('plaintiffs', 'defendants', 'charged_using', )
+    filter_horizontal = ('plaintiffs', 'defendants', 'charged_using', 'judges')
     inlines = (ReferenceInline, AttachmentInline, )
     list_display_links = ['__str__', ]
 

@@ -203,7 +203,6 @@ class Case(models.Model):
     summary = models.TextField(blank=True, verbose_name=_('summary'))
     defendants = models.ManyToManyField(Defendant, blank=True, verbose_name=_('defendants'))
     plaintiffs = models.ManyToManyField(Plaintiff, blank=True, verbose_name=_('plaintiffs'))
-    # date = models.DateField(blank=True, null=True, verbose_name=_('publication date'))
     platform = models.CharField(max_length=6, blank=True, null=True, choices=PLATFORM_CHOICES, verbose_name=_('platform'))
     current_status = models.CharField(max_length=8, blank=True, null=True, choices=STATUS_CHOICES, verbose_name=_('status'))
 
@@ -229,7 +228,7 @@ class Case(models.Model):
     contacted_via = models.CharField(max_length=10, blank=True, null=True, choices=CONTACTED_VIA_CHOICES, verbose_name=_('Contacted via'))
 
     # interrogation and detention 
-    judge = models.ForeignKey(Judge, blank=True, null=True, on_delete=models.CASCADE, verbose_name=_('judge and court'))
+    judges = models.ManyToManyField(Judge, blank=True, verbose_name=_('judges and their court'))
     # sentenced = models.CharField(max_length=6, blank=True, null=True, choices=SENTENCED_CHOICES, verbose_name=_('sentenced?'))
     sentence = models.TextField(blank=True, null=True, verbose_name=_('sentence'))
     in_absentia = models.CharField(max_length=6, blank=True, null=True, choices=YES_NO_NA_CHOICES, verbose_name=_('in absentia?'))
