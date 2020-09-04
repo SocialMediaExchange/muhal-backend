@@ -7,7 +7,7 @@ class Page(models.Model):
     slug = models.SlugField(max_length=100, verbose_name=_('slug'))
     text = models.TextField(verbose_name=_('Text'), help_text=_('Content of the static page, in Markdown'))
     created = models.DateTimeField(auto_now_add=True, verbose_name=_('Created'))
-    last_modified = models.DateTimeField(auto_now_add=True, verbose_name=_('Last modified'))
+    last_modified = models.DateTimeField(auto_now=True, verbose_name=_('Last modified'))
 
     def __str__(self):
         return self.title

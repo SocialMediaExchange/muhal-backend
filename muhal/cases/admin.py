@@ -34,7 +34,7 @@ class ReferenceInline(TranslationTabularInline):
 class CaseAdmin(TabbedTranslationAdmin):
     fieldsets = (
         (_('Required basic information'), {
-            'fields': ['summary', 'defendants', 'plaintiffs', 'platform', 'current_status', 'date_of_contact', 'date_of_publication'],
+            'fields': ['country', 'summary', 'defendants', 'plaintiffs', 'platform', 'current_status', 'date_of_contact', 'date_of_publication'],
             'classes': ('collapse-open',),
         }),
         (_('Complaint details'), {

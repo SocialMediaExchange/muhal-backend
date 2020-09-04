@@ -61,10 +61,12 @@ class CaseSerializer(serializers.ModelSerializer):
     contacted_via = serializers.SerializerMethodField()
     sentenced = serializers.SerializerMethodField()
     in_absentia = serializers.SerializerMethodField()
+    current_status = serializers.SerializerMethodField()
+    country = serializers.SerializerMethodField()
 
     class Meta:
         model = Case
-        fields = ['id', 'summary', 'defendants', 'plaintiffs', 'platform', 'platform_display', 'current_status',
+        fields = ['id', 'country', 'summary', 'defendants', 'plaintiffs', 'platform', 'platform_display', 'current_status',
 
                   'charge', 'charged_using', 'bail',
 
@@ -75,6 +77,9 @@ class CaseSerializer(serializers.ModelSerializer):
                   'duration_of_detention', 'date_of_hearing', 'date_of_hearing_2',
                   'date_of_release', 'date_of_ruling',
                   ]
+
+    def get_country(self, obj):
+        return obj.get_country_display()
 
     def get_platform_display(self, obj):
         return obj.get_platform_display()
@@ -102,3 +107,6 @@ class CaseSerializer(serializers.ModelSerializer):
 
     def get_in_absentia(self, obj):
         return obj.get_in_absentia_display()
+
+    def get_current_status(self, obj):
+        return obj.get_current_status_display()

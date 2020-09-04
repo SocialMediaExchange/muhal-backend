@@ -17,7 +17,9 @@ GENDER_CHOICES = [
 CITIZENSHIP_CHOICES = [
     ('lebanon', _('Lebanese')),
     ('syria', _('Syrian')),
+    ('palestine', _('Palestine')),
     ('stateless', _('Stateless')),
+    ('unknown', _('Unknown')),
     ('other', _('Other')),
 ]
 
@@ -43,6 +45,7 @@ STATUS_CHOICES = [
     ('open', _('Open')),
     ('closed', _('Closed')),
     ('pending', _('Pending appeal or objection')),
+    ('unknown', _('Unknown')),
     # ('na', _('Not applicable')),
     # TODO verify if NA is an option for status
 ]
@@ -197,7 +200,7 @@ class Reference(models.Model):
 
 
 class Case(models.Model):
-    # country = models.CharField(max_length=10, choices=COUNTRY_CHOICES, verbose_name=_('country'))
+    country = models.CharField(max_length=10, choices=COUNTRY_CHOICES, verbose_name=_('country'))
 
     # basic info
     summary = models.TextField(blank=True, verbose_name=_('summary'))
@@ -248,7 +251,7 @@ class Case(models.Model):
     # publishing 
     published = models.BooleanField(default=False, verbose_name=_('Published?'))
     created = models.DateTimeField(auto_now_add=True, verbose_name=_('Created'))
-    last_modified = models.DateTimeField(auto_now_add=True, verbose_name=_('Last modified'))
+    last_modified = models.DateTimeField(auto_now=True, verbose_name=_('Last modified'))
 
     def __str__(self):
         return self.summary[:15]
@@ -293,3 +296,104 @@ class Case(models.Model):
     class Meta:
         verbose_name = _('case')
         verbose_name_plural = _('cases')
+
+
+
+# import csv
+# reader = csv.reader(open('/Users/majdal/Downloads/People-Grid view.csv'))
+
+# for row in reader: 
+#     print(row)
+#     citizenship = row[9]
+#     country_of_citizenship = None
+#     if citizenship == 'Lebanese':
+#         country_of_citizenship = 'lebanon'
+#     elif citizenship == 'Syrian':
+#         country_of_citizenship = 'syria'
+#     elif citizenship == 'Palestinian':
+#         country_of_citizenship = 'palestine'
+#     else:
+#         country_of_citizenship = 'unknown'        
+
+#     _, created = Defendant.objects.get_or_create(first_name_en=row[2],
+#                            first_name_ar=row[3],
+#                            last_name_en=row[4],
+#                            last_name_ar=row[5],
+#                            gender=row[6].lower(),
+#                            citizenship=country_of_citizenship,
+#                            profession_en=row[11],
+#                            profession_ar=row[12],
+#                            age_range=row[14]
+#                            )
+
+
+# import csv
+# reader = csv.reader(open('/Users/majdal/Downloads/Cases-English.csv'))
+
+# for row in reader: 
+#     defendant = row[1].split(',')
+#     last_names = [r.split()[-1] for r in defendant]
+#     ids = []
+#     for name in last_names: 
+#         defen = Defendant.objects.filter(last_name_en__contains=name)
+#         if defen.exists():
+#             ids.append(defen[0].id)
+#     defendants = Defendant.objects.filter(id__in=ids)
+
+#     platform = row[5].lower()
+#     if platform == 'twitter':
+#         pltfrm = 'tw'
+#     elif platform == 'facebook':
+#         pltfrm = 'fb'
+#     elif platform == 'instagram':
+#         pltfrm = 'ig'
+#     elif platform == 'website':
+#         pltfrm = 'web'
+#     elif platform == 'youtube':
+#         pltfrm = 'yt'
+#     elif platform == 'whatsapp':
+#         pltfrm = 'wa'
+#     else:
+#         pltfrm = 'other'
+
+#     status = row[7].lower()
+#     if status == 'open':
+#         stts = 'open'
+#     elif status == 'closed':
+#         stts = 'closed'
+#     else:
+#         stts = 'unknown'
+
+#     c, created = Case.objects.get_or_create(
+#             country = 'lebanon',
+
+#     summary = row[6],
+#     # defendants = defendants,
+#     # plaintiffs = data is too dirty, cannot automatically import
+#     platform = pltfrm,
+#     current_status = stts
+#                            )
+#     print(created)
+#     c.defendants.set(defendants)
+#     c.save()
+
+
+
+
+
+
+
+
+
+
+
+
+
+# ['Primary',
+#  'Year',
+#  'Court/police station information',
+#  'Complaint by',
+#  'Complaint',
+#  'Source',
+#  'Complaint_ar',
+#  'Field 27']
