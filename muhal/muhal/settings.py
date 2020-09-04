@@ -153,4 +153,10 @@ REST_FRAMEWORK = {
 
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:3000',
+    'http://localhost:3014',
+    'http://127.0.0.1:3000',
 )
+try:
+    from muhal.local_settings import * 
+except ImportError:
+    pass
