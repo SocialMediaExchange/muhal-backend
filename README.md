@@ -7,8 +7,8 @@ For production purposes, you should use muhal-deployment (coming soon!).
 
 For development purposes, follow the steps below:
 
-0. Setup a Python3.6 environment using [`pipenv`](https://pipenv.readthedocs.io/en/latest/).
-1. Clone this repository, and run `pipenv install`. 
+0. Setup a Python3.6 environment using [`venv`](https://docs.python.org/3/library/venv.html), and activate your environment.
+1. Clone this repository, and run `pip install -r requirements.txt`. 
 2. Create a `muhal-backend/muhal/muhal/local_settings.py` file, with the following contents:
 ```python
 # This file is exec'd from settings.py, so it has access to and can
