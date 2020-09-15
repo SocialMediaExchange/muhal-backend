@@ -59,10 +59,9 @@ class CaseAdmin(TabbedTranslationAdmin):
     readonly_fields = ('created', 'last_modified')
 
     list_display = ['__str__', 'platform', 'current_status',
-                    'date_of_publication', 'date_of_contact', 'plaintiffs_list', 'defendants_list', 'published']
+                    'date_of_publication', 'date_of_contact', 'plaintiffs_list', 'defendants_list', 'published', 'last_modified']
     search_fields = ['summary', ]
-    list_filter = ['current_status', 'defendants',
-                   'plaintiffs', 'platform', 'published']
+    list_filter = ['current_status', 'platform', 'published', 'plaintiffs',]
     filter_horizontal = ('plaintiffs', 'defendants', 'charged_using', 'judges')
     inlines = (ReferenceInline, AttachmentInline, )
     list_display_links = ['__str__', ]
