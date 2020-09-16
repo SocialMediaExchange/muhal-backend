@@ -149,6 +149,7 @@ class Defendant(models.Model):
 class Plaintiff(models.Model):
     first_name = models.CharField(max_length=40, verbose_name=_('first name'))
     last_name = models.CharField(max_length=40, verbose_name=_('last name'))
+    description = models.CharField(max_length=200, verbose_name=_('description'))
 
     def __str__(self):
         return '{} {}'.format(self.first_name, self.last_name)

@@ -7,8 +7,8 @@ from attachments.admin import AttachmentInline
 
 
 class PlaintiffAdmin(TabbedTranslationAdmin):
-    list_display = ['first_name', 'last_name', ]
-    search_fields = ['first_name', 'last_name', ]
+    list_display = ['first_name', 'last_name', 'description']
+    search_fields = ['first_name', 'last_name', 'description']
 
 
 class DefendantAdmin(TabbedTranslationAdmin):

@@ -10,8 +10,12 @@ class DefendantTranslationOptions(TranslationOptions):
     fields = ('first_name', 'last_name', 'profession')
 
 
-class PlaintiffTranslationOptions(TranslationOptions):
+class JudgeTranslationOptions(TranslationOptions):
     fields = ('first_name', 'last_name', )
+
+
+class PlaintiffTranslationOptions(TranslationOptions):
+    fields = ('first_name', 'last_name', 'description')
 
 
 class LawArticleTranslationOptions(TranslationOptions):
@@ -26,5 +30,5 @@ translator.register(Defendant, DefendantTranslationOptions)
 translator.register(Plaintiff, PlaintiffTranslationOptions)
 translator.register(Case, CaseTranslationOptions)
 translator.register(LawArticle, LawArticleTranslationOptions)
-translator.register(Judge, PlaintiffTranslationOptions)
+translator.register(Judge, JudgeTranslationOptions)
 translator.register(Reference, ReferenceTranslationOptions)
