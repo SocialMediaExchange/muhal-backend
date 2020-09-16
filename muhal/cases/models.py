@@ -86,7 +86,18 @@ CONTACTED_VIA_CHOICES = [
 ]
 
 LEGAL_ENTITY_CHOICES = [
+    ('publications', _('Publications court')),
+    ('cassation', _('Cassation court')),
+    ('appeals', _('Appellant court')),
+    ('criminal', _('Criminal court')),
+    ('military police', _('Military police centre')),
     ('army intel', _('Army Intelligence Branch')),
+    ('military court', _('Military court')),
+    ('state security', _('State security apparatus')),
+    ('justice palace', _('Palace of Justice')),
+    ('criminal investigations', _('Central bureau of criminal investigations')),
+    ('public prosecutor', _('Executive public prosecutor')),
+    ('general security', _('General security')),
 ]
 
 KAZA_CHOICES = [
@@ -162,7 +173,7 @@ class Plaintiff(models.Model):
 class Judge(models.Model):
     first_name = models.CharField(max_length=40, verbose_name=_('first name'))
     last_name = models.CharField(max_length=40, verbose_name=_('last name'))
-    legal_entity = models.CharField(max_length=10, choices=LEGAL_ENTITY_CHOICES, verbose_name=_('legal entity'))
+    legal_entity = models.CharField(max_length=25, choices=LEGAL_ENTITY_CHOICES, verbose_name=_('legal entity'))
     kaza = models.CharField(max_length=20, choices=KAZA_CHOICES, blank=True, null=True, verbose_name=_('kaza'))
 
     def __str__(self):
