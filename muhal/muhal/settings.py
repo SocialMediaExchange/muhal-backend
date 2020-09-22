@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'cases', 
     'attachments',
     'pages',
+    'reports',
 ]
 
 MIDDLEWARE = [
@@ -161,6 +162,8 @@ CORS_ORIGIN_WHITELIST = (
     'http://localhost:3014',
     'http://127.0.0.1:3000',
 )
+
+EMAIL_SUBJECT_PREFIX = '[muhal.org] '
 
 try:
     from muhal.local_settings import * 

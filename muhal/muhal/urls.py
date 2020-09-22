@@ -19,8 +19,9 @@ from django.conf.urls import include
 from django.conf.urls.i18n import i18n_patterns
 
 urlpatterns = [
-    path('api/', include('cases.urls')), 
-    path('api/', include('pages.urls')), 
+    path('api/', include('cases.urls')),
+    path('api/', include('pages.urls')),
+    path('api/', include('reports.urls')),
 ]
 
 urlpatterns += i18n_patterns(
