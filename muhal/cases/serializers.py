@@ -19,7 +19,7 @@ class DefendantSerializer(serializers.ModelSerializer):
 class PlaintiffSerializer(serializers.ModelSerializer):
     class Meta:
         model = Plaintiff
-        fields = ['id', 'first_name', 'last_name', ]
+        fields = ['id', 'first_name', 'last_name', 'description']
 
 
 class JudgeSerializer(serializers.ModelSerializer):
