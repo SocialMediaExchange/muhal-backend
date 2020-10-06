@@ -148,6 +148,7 @@ class Defendant(models.Model):
     age_range = models.CharField(max_length=6, choices=AGE_RANGE_CHOICES, verbose_name=_('age range'))
     citizenship = models.CharField(max_length=10, choices=CITIZENSHIP_CHOICES, verbose_name=_('citizenship'))
     profession = models.CharField(max_length=100, blank=True, null=True, verbose_name=_('profession'))
+    description = models.CharField(max_length=200, blank=True, null=True, verbose_name=_('description'))
 
     def __str__(self):
         return '{} {}'.format(self.first_name, self.last_name)
@@ -158,9 +159,9 @@ class Defendant(models.Model):
 
 
 class Plaintiff(models.Model):
-    first_name = models.CharField(max_length=40, verbose_name=_('first name'))
-    last_name = models.CharField(max_length=40, verbose_name=_('last name'))
-    description = models.CharField(max_length=200, verbose_name=_('description'))
+    first_name = models.CharField(max_length=40, blank=True, null=True, verbose_name=_('first name'))
+    last_name = models.CharField(max_length=40, blank=True, null=True, verbose_name=_('last name'))
+    description = models.CharField(max_length=200, blank=True, null=True, verbose_name=_('description'))
 
     def __str__(self):
         return '{} {}'.format(self.first_name, self.last_name)

@@ -7,7 +7,7 @@ class CaseTranslationOptions(TranslationOptions):
 
 
 class DefendantTranslationOptions(TranslationOptions):
-    fields = ('first_name', 'last_name', 'profession')
+    fields = ('first_name', 'last_name', 'profession', 'description')
 
 
 class JudgeTranslationOptions(TranslationOptions):
