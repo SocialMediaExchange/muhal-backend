@@ -187,8 +187,8 @@ class Judge(models.Model):
 
 class LawArticle(models.Model):
     law = models.CharField(max_length=20, null=True, choices=LAW_CHOICES, verbose_name=_('law'))
-    number = models.CharField(max_length=100, verbose_name=_('number'))
-    name = models.CharField(max_length=100, verbose_name=_('name'))
+    number = models.CharField(max_length=100, verbose_name=_('number'), help_text=_('Prefix the number with article or articles, to make sure it renders as a complete sentence'))
+    name = models.CharField(max_length=100, blank=True, null=True, verbose_name=_('name'))
     url = models.URLField(blank=True, null=True, verbose_name=_('URL'), help_text=_('URL to the law text on the Lebanese University Centre for Law'))
 
     class Meta:
@@ -196,7 +196,7 @@ class LawArticle(models.Model):
         verbose_name_plural = _('law articles')
 
     def __str__(self):
-        return _('{} article {}').format(self.law, self.number)
+        return '{} {}: {}'.format(self.get_law_display(), self.number, self.name)
 
 
 class Reference(models.Model):

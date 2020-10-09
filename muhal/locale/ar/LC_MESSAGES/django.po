@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-06 22:12+0300\n"
-"PO-Revision-Date: 2020-10-06 15:16-0400\n"
+"POT-Creation-Date: 2020-10-09 04:04+0300\n"
+"PO-Revision-Date: 2020-10-08 18:03-0400\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ar\n"
@@ -39,23 +39,25 @@ msgstr "عام"
 msgid "attachment"
 msgstr "مُلحق"
 
-#: cases/admin.py:36
+#: cases/admin.py:37
 msgid "Required basic information"
 msgstr "البيانات الأساسيّة"
 
-#: cases/admin.py:40
+#: cases/admin.py:41
 msgid "Complaint details"
 msgstr "تفاصيل الشكوى"
 
-#: cases/admin.py:45
-msgid "Case details"
+#: cases/admin.py:46
+#, fuzzy
+#| msgid "Case details"
+msgid "Lawsuit details"
 msgstr "تفاصيل الحالة"
 
-#: cases/admin.py:49
+#: cases/admin.py:50
 msgid "Timeline"
 msgstr "الجدول الزمني"
 
-#: cases/admin.py:55
+#: cases/admin.py:56
 msgid "Publishing"
 msgstr "بيانات النشر"
 
@@ -437,6 +439,14 @@ msgstr "قانون"
 msgid "number"
 msgstr "رقم"
 
+#: cases/models.py:190
+msgid ""
+"Prefix the number with article or articles, to make sure it renders as a "
+"complete sentence"
+msgstr ""
+"أدخلي الإسم كاملاً، مثلاً: المادة 21، كي يصبح الإسم الكامل قانون المطبوعات، "
+"المادة 21"
+
 #: cases/models.py:191
 msgid "name"
 msgstr "الإسم"
@@ -458,10 +468,6 @@ msgstr "القانون والمادّة"
 #: cases/models.py:196
 msgid "law articles"
 msgstr "القوانين والمواد"
-
-#: cases/models.py:199
-msgid "{} article {}"
-msgstr "{} مادّة {}"
 
 #: cases/models.py:204 pages/models.py:6
 msgid "title"
@@ -497,11 +503,11 @@ msgstr "إسم المخفر"
 
 #: cases/models.py:227
 msgid "detained?"
-msgstr "تم اعتقاله؟"
+msgstr "تم توقيفه/ا؟"
 
 #: cases/models.py:228
 msgid "detained for number of days"
-msgstr "عدد أيّام الاعتقال"
+msgstr "عدد أيّام التوقيف"
 
 #: cases/models.py:229
 msgid "Requested to sign pledge?"
@@ -565,11 +571,11 @@ msgstr "تاريخ التحقيق"
 
 #: cases/models.py:257
 msgid "date of detention"
-msgstr "تاريخ الاحتجاز"
+msgstr "تاريخ التوقيف"
 
 #: cases/models.py:258
 msgid "duration of detention (in days)"
-msgstr "مدّة الاحتجاز"
+msgstr "مدّة التوقيف (عدد الأيّام)"
 
 #: cases/models.py:259
 msgid "date of hearing"
@@ -657,7 +663,7 @@ msgstr "تم التبليغ عن طريق"
 
 #: reports/models.py:16
 msgid "What happened"
-msgstr "ما الذي حصل؟"
+msgstr "ما الذي حصل"
 
 #: reports/models.py:18
 msgid "Our notes"
@@ -674,6 +680,9 @@ msgstr "إبلاغ"
 #: reports/models.py:28
 msgid "Reports"
 msgstr "إبلاغات"
+
+#~ msgid "{} article {}"
+#~ msgstr "{} مادّة {}"
 
 #~ msgid "Meta data"
 #~ msgstr "البيانات الوصفيّة"

@@ -20,6 +20,7 @@ class DefendantAdmin(TabbedTranslationAdmin):
 class LawArticleAdmin(TabbedTranslationAdmin):
     list_display = ['law', 'number', 'name', ]
     search_fields = ['number', 'name', ]
+    list_filter = ['law', ]
 
 
 class JudgeAdmin(TabbedTranslationAdmin):
@@ -42,13 +43,13 @@ class CaseAdmin(TabbedTranslationAdmin):
                        'content_deletion', 'reconciliation', 'contacted_via', ],
             'classes': ('collapse-closed',),
         }),
-        (_('Case details'), {
+        (_('Lawsuit details'), {
             'fields': ['judges', 'charge', 'charged_using', 'bail', 'sentenced', 'sentence', 'in_absentia', ],
             'classes': ('collapse-closed',)
         }),
         (_('Timeline'), {
             'fields': ['date_of_detention',  # 'date_of_contact', 'date_of_investigation', 'date_of_publication'
-                       'duration_of_detention', 'date_of_hearing',  'date_of_hearing_2',
+                        'date_of_hearing',  'date_of_hearing_2', # 'duration_of_detention',
                        'date_of_release', 'date_of_ruling', ],
             'classes': ('collapse-closed',)
         }),
