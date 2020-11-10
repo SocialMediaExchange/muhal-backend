@@ -87,18 +87,37 @@ CONTACTED_VIA_CHOICES = [
 ]
 
 LEGAL_ENTITY_CHOICES = [
-    ('publications', _('Publications court')),
-    ('cassation', _('Cassation court')),
-    ('appeals', _('Appellant court')),
-    ('criminal', _('Criminal court')),
-    ('military police', _('Military police centre')),
-    ('army intel', _('Army Intelligence Branch')),
-    ('military court', _('Military court')),
-    ('state security', _('State security apparatus')),
-    ('justice palace', _('Palace of Justice')),
-    ('criminal investigations', _('Central bureau of criminal investigations')),
-    ('public prosecutor', _('Executive public prosecutor')),
-    ('general security', _('General security')),
+    (_('Lebanon'), (
+        ('publications', _('Publications court')),
+        ('cassation', _('Cassation court')),
+        ('appeals', _('Appellant court')),
+        ('criminal', _('Criminal court')),
+        ('military police', _('Military police centre')),
+        ('army intel', _('Army Intelligence Branch')),
+        ('military court', _('Military court')),
+        ('state security', _('State security apparatus')),
+        ('justice palace', _('Palace of Justice')),
+        ('criminal investigations', _('Central bureau of criminal investigations')),
+        ('public prosecutor', _('Executive public prosecutor')),
+        ('general security', _('General security')),
+    )),
+    (_('Jordan'), (
+        ('jo_reconciliation', _('Reconciliation court')),
+        ('jo_initial', _('Initial court')),
+        ('jo_appeals', _('Appeals court')),
+        ('jo_cessation', _('Cessation court')),
+        ('jo_administrative', _('Administrative court')),
+        ('jo_constitutional', _('Constitutional court')),
+        ('jo_grand_criminal', _('Grand criminal court')),
+        ('jo_state security', _('State security court')),
+        # ('jo_reconciliation', _('محكمة الصلح')),
+        # ('jo_initial', _('محكمة البداية')),
+        # ('jo_appeals', _('محكمة الاستئناف')),
+        # ('jo_cessation', _('محكمة التمييز')),
+        # ('jo_administrative', _('المحكمة الإدارية')),
+        # ('jo_grand_criminal', _('محكمة الجنايات الكبرى')),
+        # ('jo_state security', _('محكمة أمن الدولة')),
+    ))
 ]
 
 KAZA_CHOICES = [
