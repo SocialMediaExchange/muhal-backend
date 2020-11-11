@@ -7,7 +7,7 @@ from .models import Report
 class ReportAdmin(admin.ModelAdmin):
     fieldsets = (
         (_('Submitted information'), {
-            'fields': ['country', 'plaintiff', 'defendant', 'what_happened', ],
+            'fields': ['country', 'plaintiff', 'defendant', 'what_happened', 'submitter'],
             'classes': ('collapse-open',),
         }),
         (_('Admin details'), {
@@ -19,7 +19,7 @@ class ReportAdmin(admin.ModelAdmin):
                     'defendant', 'created', 'processed']
     search_fields = ['what_happened', 'plaintiff', 'defendant']
     list_filter = ['processed', 'country']
-    readonly_fields = ('country', 'plaintiff', 'defendant',
+    readonly_fields = ('country', 'plaintiff', 'defendant', 'submitter',
                        'what_happened', 'created', 'last_modified')
 
 

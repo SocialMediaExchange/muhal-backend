@@ -1,4 +1,5 @@
 import os
+
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
@@ -8,7 +9,7 @@ from django.utils.translation import gettext_lazy as _
 from cases.models import COUNTRY_CHOICES
 
 class Report(models.Model):
-    submitter = models.EmailField(null=True, verbose_name=_('submitted by'))
+    submitter = models.CharField(max_length=100, null=True, verbose_name=_('submitted by'))
     country = models.CharField(max_length=10, choices=COUNTRY_CHOICES, verbose_name=_('country'))
     plaintiff = models.CharField(max_length=200, verbose_name=_('plaintiff'))
     defendant = models.CharField(max_length=200, verbose_name=_('defendant'))
