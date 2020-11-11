@@ -1,6 +1,9 @@
 from django.contrib import admin
+from django.db import models
 from django.utils.translation import gettext_lazy as _
+
 from modeltranslation.admin import TranslationTabularInline, TranslationAdmin, TabbedTranslationAdmin
+from pagedown.widgets import AdminPagedownWidget
 
 from .models import Case, Defendant, Plaintiff, LawArticle, Judge, Reference
 from attachments.admin import AttachmentInline
@@ -66,6 +69,9 @@ class CaseAdmin(TabbedTranslationAdmin):
     filter_horizontal = ('plaintiffs', 'defendants', 'charged_using', 'judges')
     inlines = (ReferenceInline, AttachmentInline, )
     list_display_links = ['__str__', ]
+    formfield_overrides = {
+        models.TextField: {'widget': AdminPagedownWidget },
+    }
 
 
 admin.site.register(Plaintiff, PlaintiffAdmin)
