@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-11 23:02+0200\n"
-"PO-Revision-Date: 2020-11-11 16:05-0500\n"
+"POT-Creation-Date: 2020-11-15 05:43+0200\n"
+"PO-Revision-Date: 2020-11-14 22:44-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ar\n"
@@ -59,20 +59,21 @@ msgstr "الجدول الزمني"
 msgid "Publishing"
 msgstr "بيانات النشر"
 
-#: cases/apps.py:7 cases/models.py:340
+#: cases/apps.py:7 cases/models.py:350
 msgid "cases"
 msgstr "حالات"
 
-#: cases/models.py:6 cases/models.py:90 cases/models.py:117
+#: cases/models.py:6 cases/models.py:90 cases/models.py:117 cases/models.py:166
 msgid "Lebanon"
 msgstr "لبنان"
 
 #: cases/models.py:7 cases/models.py:104 cases/models.py:149
+#: cases/models.py:173
 msgid "Jordan"
 msgstr "الأردن"
 
 #: cases/models.py:8 cases/models.py:14 cases/models.py:24 cases/models.py:42
-#: cases/models.py:170
+#: cases/models.py:171 cases/models.py:179
 msgid "Other"
 msgstr "آخر"
 
@@ -441,87 +442,107 @@ msgstr "معان"
 msgid "Aqaba"
 msgstr "العقبة"
 
-#: cases/models.py:166
+#: cases/models.py:167
 msgid "Publications law"
 msgstr "قانون المطبوعات"
 
-#: cases/models.py:167
-msgid "Penal code"
-msgstr "القاون الجزائي"
-
 #: cases/models.py:168
+msgid "Penal code"
+msgstr "القانون الجزائي"
+
+#: cases/models.py:169
 msgid "Electronic affairs"
 msgstr "المعاملات الإلكترونيّة"
 
-#: cases/models.py:169
+#: cases/models.py:170
 msgid "Military law"
 msgstr "المحكمة العسكريّة"
 
-#: cases/models.py:174 cases/models.py:191 cases/models.py:204
+#: cases/models.py:174
+msgid "Anti-terrorism law"
+msgstr "قانون مكافحة الإرهاب"
+
+#: cases/models.py:175
+msgid "Telecommunications law"
+msgstr "‫قانون الإتصالات"
+
+#: cases/models.py:176
+msgid "Cybercrimes law"
+msgstr "‫‫‫قانون الجرائم الالكترونية"
+
+#: cases/models.py:177
+msgid "Jordanian penal code"
+msgstr "قانون العقوبات"
+
+#: cases/models.py:178
+msgid "Press and publications law"
+msgstr "قانون المطبوعات والنشر"
+
+#: cases/models.py:184 cases/models.py:201 cases/models.py:214
 msgid "first name"
 msgstr "الإسم"
 
-#: cases/models.py:175 cases/models.py:192 cases/models.py:205
+#: cases/models.py:185 cases/models.py:202 cases/models.py:215
 msgid "last name"
 msgstr "إسم العائلة"
 
-#: cases/models.py:176
+#: cases/models.py:186
 msgid "gender"
 msgstr "الجندر"
 
-#: cases/models.py:177
+#: cases/models.py:187
 msgid "age range"
 msgstr "الفئة العمرية"
 
-#: cases/models.py:178
+#: cases/models.py:188
 msgid "citizenship"
 msgstr "الجنسيّة"
 
-#: cases/models.py:179
+#: cases/models.py:189
 msgid "profession"
 msgstr "المهنة"
 
-#: cases/models.py:180 cases/models.py:193
+#: cases/models.py:190 cases/models.py:203
 msgid "description"
 msgstr "التعريف"
 
-#: cases/models.py:186 reports/models.py:15
+#: cases/models.py:196 reports/models.py:15
 msgid "defendant"
 msgstr "الجهة المدّعى عليها"
 
-#: cases/models.py:187 cases/models.py:249
+#: cases/models.py:197 cases/models.py:259
 msgid "defendants"
 msgstr "الجهات المدّعى عليها"
 
-#: cases/models.py:199 reports/models.py:14
+#: cases/models.py:209 reports/models.py:14
 msgid "plaintiff"
 msgstr "الجهة المدّعية"
 
-#: cases/models.py:200 cases/models.py:250
+#: cases/models.py:210 cases/models.py:260
 msgid "plaintiffs"
 msgstr "الجهات المدّعية"
 
-#: cases/models.py:206
+#: cases/models.py:216
 msgid "legal entity"
 msgstr "الجهة القانونيّة"
 
-#: cases/models.py:207
+#: cases/models.py:217
 msgid "kaza"
 msgstr "القضاء"
 
-#: cases/models.py:213 cases/models.py:214
+#: cases/models.py:223 cases/models.py:224
 msgid "judge"
 msgstr "القاضي/ة"
 
-#: cases/models.py:218
+#: cases/models.py:228
 msgid "law"
 msgstr "قانون"
 
-#: cases/models.py:219
+#: cases/models.py:229
 msgid "number"
 msgstr "رقم"
 
-#: cases/models.py:219
+#: cases/models.py:229
 msgid ""
 "Prefix the number with article or articles, to make sure it renders as a "
 "complete sentence"
@@ -529,169 +550,169 @@ msgstr ""
 "أدخلي الإسم كاملاً، مثلاً: المادة 21، كي يصبح الإسم الكامل قانون المطبوعات، "
 "المادة 21"
 
-#: cases/models.py:220
+#: cases/models.py:230
 msgid "name"
 msgstr "الإسم"
 
-#: cases/models.py:221 cases/models.py:234
+#: cases/models.py:231 cases/models.py:244
 msgid "URL"
 msgstr "الرابط"
 
-#: cases/models.py:221
+#: cases/models.py:231
 msgid "URL to the law text on the Lebanese University Centre for Law"
 msgstr ""
 "رابط إلى نص القانون و المادّة على موقع مركز الابحاث والدراسات في المعلوماتية "
 "القانونية في الجامعة اللبنانيّة"
 
-#: cases/models.py:224
+#: cases/models.py:234
 msgid "law article"
 msgstr "القانون والمادّة"
 
-#: cases/models.py:225
+#: cases/models.py:235
 msgid "law articles"
 msgstr "القوانين والمواد"
 
-#: cases/models.py:233 pages/models.py:6
+#: cases/models.py:243 pages/models.py:6
 msgid "title"
 msgstr "العنوان"
 
-#: cases/models.py:240
+#: cases/models.py:250
 msgid "Reference"
 msgstr "مرجع"
 
-#: cases/models.py:241
+#: cases/models.py:251
 msgid "References"
 msgstr "مراجع"
 
-#: cases/models.py:245 reports/models.py:13
+#: cases/models.py:255 reports/models.py:13
 msgid "country"
 msgstr "الدولة"
 
-#: cases/models.py:248
+#: cases/models.py:258
 msgid "summary"
 msgstr "الملخّص"
 
-#: cases/models.py:251
+#: cases/models.py:261
 msgid "platform"
 msgstr "المنصّة"
 
-#: cases/models.py:252
+#: cases/models.py:262
 msgid "status"
 msgstr "الوضع"
 
-#: cases/models.py:255
+#: cases/models.py:265
 msgid "Police station name"
 msgstr "إسم المخفر"
 
-#: cases/models.py:256
+#: cases/models.py:266
 msgid "detained?"
 msgstr "تم توقيفه/ا؟"
 
-#: cases/models.py:257
+#: cases/models.py:267
 msgid "detained for number of days"
 msgstr "عدد أيّام التوقيف"
 
-#: cases/models.py:258
+#: cases/models.py:268
 msgid "Requested to sign pledge?"
 msgstr "طُلب توقيع تعهّد؟"
 
-#: cases/models.py:259 cases/models.py:272
+#: cases/models.py:269 cases/models.py:282
 msgid "Requested to delete content?"
 msgstr "طُلب حذف المحتوى؟"
 
-#: cases/models.py:260
+#: cases/models.py:270
 msgid "reconciliation"
 msgstr "مصالحة"
 
-#: cases/models.py:264
+#: cases/models.py:274
 msgid "charge"
 msgstr "التهمة"
 
-#: cases/models.py:265
+#: cases/models.py:275
 msgid "charged using law article"
 msgstr "القانون والمادّة المستعملة في التهمة"
 
-#: cases/models.py:266
+#: cases/models.py:276
 msgid "bail amount"
 msgstr "مبلغ الكفالة"
 
-#: cases/models.py:266
+#: cases/models.py:276
 msgid "The amount in local currency"
 msgstr "المبلغ بالعملة المحلّية"
 
-#: cases/models.py:269
+#: cases/models.py:279
 msgid "sentenced?"
 msgstr "هل تم الحكم؟"
 
-#: cases/models.py:270 cases/models.py:278
+#: cases/models.py:280 cases/models.py:288
 msgid "sentence"
 msgstr "الحكم"
 
-#: cases/models.py:271 cases/models.py:279
+#: cases/models.py:281 cases/models.py:289
 msgid "in absentia?"
 msgstr "حكم غيابي؟"
 
-#: cases/models.py:273 cases/models.py:280
+#: cases/models.py:283 cases/models.py:290
 msgid "Contacted via"
 msgstr "تم التواصل عبر"
 
-#: cases/models.py:276
+#: cases/models.py:286
 msgid "judges and their court"
 msgstr "القاضاة والمحكمة"
 
-#: cases/models.py:283
+#: cases/models.py:293
 msgid "date of publication"
 msgstr "تاريخ النشر"
 
-#: cases/models.py:284
+#: cases/models.py:294
 msgid "date of contact by cybercrime bureau"
 msgstr "تاريخ التواصل من قبل المخفر"
 
-#: cases/models.py:285
+#: cases/models.py:295
 msgid "date of investigation"
 msgstr "تاريخ التحقيق"
 
-#: cases/models.py:286
+#: cases/models.py:296
 msgid "date of detention"
 msgstr "تاريخ التوقيف"
 
-#: cases/models.py:287
+#: cases/models.py:297
 msgid "duration of detention (in days)"
 msgstr "مدّة التوقيف (عدد الأيّام)"
 
-#: cases/models.py:288
+#: cases/models.py:298
 msgid "date of hearing"
 msgstr "تاريخ الجلسة"
 
-#: cases/models.py:289
+#: cases/models.py:299
 msgid "date of second hearing"
 msgstr "تاريخ الجلسة الثانية"
 
-#: cases/models.py:290
+#: cases/models.py:300
 msgid "date of release"
 msgstr "تاريخ إطلاق السراح"
 
-#: cases/models.py:291
+#: cases/models.py:301
 msgid "date of ruling"
 msgstr "تاريخ الحكم"
 
-#: cases/models.py:294
+#: cases/models.py:304
 msgid "Published?"
 msgstr "تم النشر؟"
 
-#: cases/models.py:295 pages/models.py:9 reports/models.py:19
+#: cases/models.py:305 pages/models.py:9 reports/models.py:19
 msgid "Created"
 msgstr "أُنشئت"
 
-#: cases/models.py:296 pages/models.py:10 reports/models.py:20
+#: cases/models.py:306 pages/models.py:10 reports/models.py:20
 msgid "Last modified"
 msgstr "آخر تعديل"
 
-#: cases/models.py:333 cases/models.py:336
+#: cases/models.py:343 cases/models.py:346
 msgid ", "
 msgstr "، "
 
-#: cases/models.py:339
+#: cases/models.py:349
 msgid "case"
 msgstr "حالة"
 

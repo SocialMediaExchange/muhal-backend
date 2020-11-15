@@ -163,11 +163,21 @@ KAZA_CHOICES = [
 ]
 
 LAW_CHOICES = [
-    ('publication', _('Publications law')),
-    ('penal', _('Penal code')),
-    ('electronic', _('Electronic affairs')),
-    ('military', _('Military law')),
-    ('other', _('Other')),
+    (_('Lebanon'), (
+        ('publication', _('Publications law')),
+        ('penal', _('Penal code')),
+        ('electronic', _('Electronic affairs')),
+        ('military', _('Military law')),
+        ('other', _('Other')),
+    )),
+    (_('Jordan'), (
+        ('jo anti-terrorism', _('Anti-terrorism law')),
+        ('jo telecom', _('Telecommunications law')),
+        ('jo cybercrimes', _('Cybercrimes law')),
+        ('jo penal', _('Jordanian penal code')),
+        ('jo press', _('Press and publications law')),
+        ('jo other', _('Other')),
+    )),
 ]
 
 class Defendant(models.Model):
