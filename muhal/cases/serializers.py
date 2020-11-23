@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from django.utils.translation import gettext_lazy as _
 
-from .models import Case, Plaintiff, Defendant, Judge, LawArticle
+from .models import Case, Plaintiff, Defendant, Judge, LawArticle, Reference
 
 
 class DefendantSerializer(serializers.ModelSerializer):
@@ -48,6 +48,13 @@ class LawArticleSerializer(serializers.ModelSerializer):
         return obj.get_law_display()
 
 
+class ReferenceSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Reference
+        fields = ['id', 'title', 'url', ]
+
+
 class CaseSerializer(serializers.ModelSerializer):
     defendants = DefendantSerializer(required=False, many=True)
     plaintiffs = PlaintiffSerializer(required=False, many=True)
@@ -63,6 +70,7 @@ class CaseSerializer(serializers.ModelSerializer):
     in_absentia = serializers.SerializerMethodField()
     current_status_display = serializers.SerializerMethodField()
     country_display = serializers.SerializerMethodField()
+    references = ReferenceSerializer(many=True, read_only=True)
 
     class Meta:
         model = Case
@@ -76,6 +84,8 @@ class CaseSerializer(serializers.ModelSerializer):
                   'date_of_publication', 'date_of_contact', 'date_of_investigation', 'date_of_detention',
                   'duration_of_detention', 'date_of_hearing', 'date_of_hearing_2',
                   'date_of_release', 'date_of_ruling',
+
+                  'references',
                   ]
 
     def get_country_display(self, obj):

@@ -239,7 +239,7 @@ class LawArticle(models.Model):
 
 
 class Reference(models.Model):
-    case = models.ForeignKey('Case', on_delete=models.CASCADE)
+    case = models.ForeignKey('Case', related_name='references', on_delete=models.CASCADE)
     title = models.CharField(max_length=100, verbose_name=_('title'))
     url = models.URLField(verbose_name=_('URL'))
 
