@@ -5,7 +5,7 @@ from django.utils.translation import gettext_lazy as _
 
 class Attachment(models.Model):
     label = models.CharField(max_length=100, verbose_name=_('label'))
-    file = models.FileField(upload_to='attachments/', verbose_name=_('file'))
+    file = models.FileField(upload_to='media/', verbose_name=_('file'))
     public = models.BooleanField(default=True, verbose_name=_('public'))
 
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
