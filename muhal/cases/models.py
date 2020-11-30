@@ -350,6 +350,10 @@ class Case(models.Model):
     def defendants_list(self):
         return _(', ').join([str(defendant) for defendant in self.defendants.all()])
 
+    @property
+    def public_attachments(self):
+        return self.attachments.filter(public=True)
+
     class Meta:
         verbose_name = _('case')
         verbose_name_plural = _('cases')
