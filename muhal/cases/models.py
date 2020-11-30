@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from django.core.exceptions import ValidationError
+from django.contrib.contenttypes.fields import GenericRelation
+
+from attachments.models import Attachment
 
 COUNTRY_CHOICES = [
     ('lebanon', _('Lebanon')),
@@ -299,6 +301,9 @@ class Case(models.Model):
     date_of_hearing_2 = models.DateField(blank=True, null=True, verbose_name=_('date of second hearing'))
     date_of_release = models.DateField(blank=True, null=True, verbose_name=_('date of release'))
     date_of_ruling = models.DateField(blank=True, null=True, verbose_name=_('date of ruling'))
+
+    # extras 
+    attachments = GenericRelation(Attachment)
 
     # publishing 
     published = models.BooleanField(default=False, verbose_name=_('Published?'))
