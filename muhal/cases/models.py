@@ -7,6 +7,7 @@ from attachments.models import Attachment
 COUNTRY_CHOICES = [
     ('lebanon', _('Lebanon')),
     ('jordan', _('Jordan')),
+    ('tunisia', _('Tunisia')),
     ('other', _('Other')),
 ]
 
@@ -19,6 +20,7 @@ GENDER_CHOICES = [
 CITIZENSHIP_CHOICES = [
     ('lebanon', _('Lebanese')),
     ('jordan', _('Jordanian')),
+    ('tunis', _('Tunisian')),
     ('syria', _('Syrian')),
     ('palestine', _('Palestine')),
     ('stateless', _('Stateless')),
@@ -112,6 +114,13 @@ LEGAL_ENTITY_CHOICES = [
         ('jo constitutional', _('Constitutional court')),
         ('jo major felonies', _('Major Felonies Court')),
         ('jo state security', _('State Security Court')),
+    )),
+    (_('Tunisia'), (
+        ('tn cessation', _('Court of Cassation')), # محكمة التعقيب
+        ('tn appeal', _('Court of Appeal')),
+        ('tn first instance', _('Courts of First Instance ')),
+        ('tn military appeal', _('Military Court of Appeal')),
+        ('tn military first instance', _('Military Court of First Instance')),
     ))
 ]
 
@@ -215,7 +224,7 @@ class Plaintiff(models.Model):
 class Judge(models.Model):
     first_name = models.CharField(max_length=40, verbose_name=_('first name'))
     last_name = models.CharField(max_length=40, verbose_name=_('last name'))
-    legal_entity = models.CharField(max_length=25, choices=LEGAL_ENTITY_CHOICES, verbose_name=_('legal entity'))
+    legal_entity = models.CharField(max_length=40, choices=LEGAL_ENTITY_CHOICES, verbose_name=_('legal entity'))
     kaza = models.CharField(max_length=20, choices=KAZA_CHOICES, blank=True, null=True, verbose_name=_('kaza'))
 
     def __str__(self):
